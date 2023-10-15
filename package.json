@@ -4,11 +4,10 @@
   "description": "shoppers-ui",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
-    "start-exp": "nodemon --experimental-json-modules --exec babel-node server/index.js",
-    "debug": "set DEBUG=* & npm run start",
-    "ng": "ng",
-    "serve": "ng serve --proxy-config proxy.config.json",
+    "node": "nodemon server/index.js",
+    "node-exp": "nodemon --experimental-json-modules --exec babel-node server/index.js",
+    "node-debug": "set DEBUG=* & npm run node",
+    "angular": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
