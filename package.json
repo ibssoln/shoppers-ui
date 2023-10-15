@@ -8,7 +8,7 @@
     "start-exp": "nodemon --experimental-json-modules --exec babel-node server/index.js",
     "debug": "set DEBUG=* & npm run start",
     "ng": "ng",
-    "serve": "ng serve",
+    "serve": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

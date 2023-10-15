@@ -6,9 +6,9 @@ module.exports = (app, config) => {
 
     app.get('/favicon.ico', (req, res) => res.sendStatus(204));
     
-    app.get('/', (req, res, next) => {
-        console.log('works');
-        res.send('works');
+    app.get('/api/data', (req, res, next) => {
+        console.log('api/data');
+        res.send(['a','b']);
     });
 
   return router;
