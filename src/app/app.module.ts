@@ -9,6 +9,7 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { BestDealComponent } from './best-deal/best-deal.component';
 import { CartComponent } from './cart/cart.component';
 import { StoresComponent } from './stores/stores.component';
+import { FaqBoardComponent } from './faq-board/faq-board.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StoresComponent } from './stores/stores.component';
     AccountSettingComponent,
     BestDealComponent,
     CartComponent,
-    StoresComponent
+    StoresComponent,
+    FaqBoardComponent
   ],
   imports: [
     BrowserModule,
