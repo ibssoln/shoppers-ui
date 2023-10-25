@@ -4,10 +4,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClarityModule } from "@clr/angular";
+import { SearchResultComponent } from './search-result/search-result.component';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { BestDealComponent } from './best-deal/best-deal.component';
+import { CartComponent } from './cart/cart.component';
+import { StoresComponent } from './stores/stores.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchResultComponent,
+    AccountSettingComponent,
+    BestDealComponent,
+    CartComponent,
+    StoresComponent
   ],
   imports: [
     BrowserModule,

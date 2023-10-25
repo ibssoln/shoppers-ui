@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ControllerService } from './service/controller/controller.service';
+import { ClarityIcons, shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon );
 
 @Component({
   selector: 'app-root',
