@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, TimeoutError, debounceTime, takeUntil } from 'rxjs';
 import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, FaqSpinner, faq } from '../shared/datamodel/faq.datagrid.model';
 import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
@@ -13,7 +13,7 @@ import { ControllerService } from '../service/controller/controller.service';
 })
 export class FaqBoardComponent implements OnInit, OnDestroy{
 
-  public faqForm: FormGroup;
+  public faqForm: FormGroup = this.formBuilder.group({});
   public isShowTable = false;
   public displayModal: boolean = false;
   public itemsDataGrid: faq[] = []; //data grid items
@@ -37,13 +37,14 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
     private formBuilder: FormBuilder,
     private controllerService: ControllerService
   ){
-    this.faqForm = this.formBuilder.group({
-      keyword: new FormControl('')
-    });
+    // this.faqForm = this.formBuilder.group({
+    //   keyword: new FormControl('')
+    // });
   }
 
   ngOnInit(): void{
     this.refreshDatagrid();
+	this.faqForm.addControl('keyword', new FormControl('', [Validators.required]));
   }
 
   public searchDisplayInitialPage(){

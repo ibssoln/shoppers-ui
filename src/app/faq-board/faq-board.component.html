@@ -1,13 +1,17 @@
 <h2>Frequently Asked Questions</h2>
 <br /><hr /><br />
 
+<form [formGroup]="faqForm">
+
 <div class="flex">
-      <input clrInput placeholder="Enter the keyword" name="keyword" />
+      <input clrInput placeholder="Enter the keyword" id="keyword" name="keyword" [formControlName]="'keyword'" />
       <div style="margin: 8px 0 0 5px;"><button class="btn btn-primary" (click)="searchDisplayInitialPage()">Search</button></div>
 </div>
+<div *ngIf="faqForm.controls['keyword'].getError('required') && (faqForm.get('keyword')?.dirty || faqForm.get('keyword')?.touched)" style="color: red;">
+  * This field is required
+</div>
+  
 <br />
-
-<form [formGroup]="faqForm">
 
 <clr-datagrid>
 
