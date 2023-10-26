@@ -256,7 +256,7 @@ private resetButtonAndSpinner(){
 	this.faqSpinner.allFetching = false;
 }
 
-private refresh(state: ClrDatagridStateInterface){
+public refresh(state: ClrDatagridStateInterface){
 	this.faqDatagrid.debouncer.next(state);
 }
 
@@ -343,7 +343,7 @@ public isSearchOrFetchMode(){
 	return (this.faqSpinner.searching || this.faqSpinner.allFetching);
 }
 
-private selectionChanged(items: faq[]){
+public selectionChanged(items: faq[]){
 	
 	// the items passed as a parameter in here by the triggerred selectionChanged() event, is the results automatically
 	// updated by Clarity API, and they store ONLY the items on which a select or deselect event was triggerred in the
