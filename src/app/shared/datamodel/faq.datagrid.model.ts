@@ -43,9 +43,32 @@ export enum FaqMode{
 	TimeOut
 }
 
+export class FaqNotification{
+	msgNoData: boolean = false;
+	msgTimeOut: boolean = false;
+	msgOpComplete: boolean = false;
+	constructor(){}
+}
+
+export class FaqSpinner{
+	searching: boolean = false;
+	allFetching: boolean = false;
+	enableSearch: boolean = true;
+	processing: boolean = false;
+	constructor(){}
+}
+
+export enum FaqNotificationMode{
+	NoData,
+	TimeOut
+}
+
 export class faq{
+	compositeKey: string = ''; //programmable
 	levelName: string = '';
 	businessId: string = '';
 	editTime: string = '';
+	selected: boolean = false; //programmable
+	description: string = ''; //programmable
 	constructor(){};
 }

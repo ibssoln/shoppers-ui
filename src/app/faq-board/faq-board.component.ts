@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subject, debounceTime, takeUntil } from 'rxjs';
-import { FaqDatagrid, FaqFilter, FaqSort, faq } from '../shared/datamodel/faq.datagrid.model';
+import { Subject, TimeoutError, debounceTime, takeUntil } from 'rxjs';
+import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, FaqSpinner, faq } from '../shared/datamodel/faq.datagrid.model';
 import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { DatagridRefreshMode, FetchResult } from '../shared/datamodel/repository.model';
+import { ControllerService } from '../service/controller/controller.service';
 
 @Component({
   selector: 'app-faq-board',
@@ -12,14 +13,29 @@ import { DatagridRefreshMode, FetchResult } from '../shared/datamodel/repository
 })
 export class FaqBoardComponent implements OnInit, OnDestroy{
 
-  public faqDatagrid: FaqDatagrid = new FaqDatagrid();
   public faqForm: FormGroup;
+  public isShowTable = false;
+  public displayModal: boolean = false;
+  public itemsDataGrid: faq[] = []; //data grid items
+  public numItemsTotal: number = 0; // data grid items total
+  public itemsSelected: faq[] = [];
+  public faqSpinner: FaqSpinner = new FaqSpinner();
+  public faqNotification: FaqNotification = new FaqNotification();
+  public faqDatagrid: FaqDatagrid = new FaqDatagrid();
+  public numItemsProcessed: number = 0;
+
+  // public businessIdNameList: string[] = [];
+  // private searchSubmitterId: string = '';
+  // public levels: Level[] = [];
+  // private userRoleTypes: string[] = [];
+
 
   // prevent memory leak
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private controllerService: ControllerService
   ){
     this.faqForm = this.formBuilder.group({
       keyword: new FormControl('')
@@ -28,6 +44,24 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void{
     this.refreshDatagrid();
+  }
+
+  private searchDisplayInitialPage(){
+    // this.setSearchUserIdCriteria();
+    this.changeStateShowTable(false);
+    this.setSearchingMode(true);
+    this.prepareNewCriteriaSearch();
+    this.loadSearchDataToTable();
+  }
+
+  private prepareNewCriteriaSearch(){
+    this.setSorts(true, this.faqDatagrid.sorts);
+    this.setFilters(true, this.faqDatagrid.filters);
+    this.faqDatagrid.hasAllDataAlreadyFetched = false;
+    this.faqDatagrid.allDataStatic = [];
+    this.faqDatagrid.selections.itemsSelected = [];
+    this.faqDatagrid.currentPage = 1; //reset to page 1
+    this.faqDatagrid.numItemsPerPage = 10;
   }
 
  private refreshDatagrid(): void{
@@ -61,7 +95,7 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
 		}
 		//----------------
 		if(this.faqDatagrid.hasAllDataAlreadyFetched){
-			this.faqDatagrid.selections.selectionsBeforeFetch = this.itemsDatagrid.slice();
+			this.faqDatagrid.selections.selectionsBeforeFetch = this.itemsDataGrid.slice();
 			this.faqDatagrid.selections.selectionsBeforeFetch.forEach(item => {
 				const found: faq | undefined
 					= this.findOne(this.faqDatagrid.allDataStatic, item.compositeKey);
@@ -69,17 +103,17 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
 					found.selected = item.selected;
 				}
 			});
-			this.faqDatagrid.selections.selecionsBeforeFetch = [];
+			this.faqDatagrid.selections.selectionsBeforeFetch = [];
 
 			// apply filter, sort, pagination criteria
 			this.faqDatagrid.repository.setAllData(this.faqDatagrid.allDataStatic)
-			.filer(filterMap)
+			.filter(filterMap)
 			.sort(<{by: string; reverse: boolean}>state.sort)
 			.fetch(state.page!.from, this.faqDatagrid.numItemsPerPage)
 			.then((fetchResult: FetchResult) => {
 				this.changeStateShowTable(true);
-				this.itemsDatagrid = <faq[]> fetchResult.result;
-				this.setUserInfo();
+				this.itemsDataGrid = <faq[]> fetchResult.result;
+				// this.setUserInfo();
 				this.numItemsTotal = fetchResult.total;
 
 				// recalculate the itemsSelected based on the updated allDataStatic repo.
@@ -90,7 +124,7 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
 						const found: faq | undefined
 							= this.findOne(this.faqDatagrid.selections.itemsSelected, data.compositeKey);
 						if(!found){
-							this.faqDatagrid.selections.itemSelected.push(data);
+							this.faqDatagrid.selections.itemsSelected.push(data);
 						}
 					}
 				});
@@ -111,7 +145,7 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
 				|| (prevNumItemsPerPage != this.faqDatagrid.numItemsPerPage)
 			)){
 				//carry-over the selections (1)
-				this.faqDatagrid.selections.selectionsBeforeFetch = this.itemsDatagrid.slice();
+				this.faqDatagrid.selections.selectionsBeforeFetch = this.itemsDataGrid.slice();
 
 				this.setAllFetchingMode(true);
 
@@ -142,7 +176,7 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
 					.then((fetchResult: FetchResult) => {
 						
 						this.changeStateShowTable(true);
-						this.itemsDatagrid = <faq[]> fetchResult.result;
+						this.itemsDataGrid = <faq[]> fetchResult.result;
 						// this.setUserInfo();
 						this.numItemsTotal = fetchResult.total;
 
@@ -179,8 +213,79 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
   });
  }  
 
- private refresh(state: ClrDatagridStateInterface){
+ private loadSearchDataToTable(){
+	
+	this.controllerService.getData()
+	.pipe(takeUntil(this.destroy$))
+	.subscribe((resp: any) => {
+
+		if(resp.data && resp.total > 0){
+			this.changeStateShowTable(true);
+			this.itemsDataGrid = resp.data.sort((a: any, b: any) => a.editTime < b.editTime ? 1 : a.editTime > b.editTime? -1 : 0);
+			// this.setUserInfo();
+			this.numItemsTotal = resp.total;
+		}else{
+			this.changeStateShowTable(false);
+			this.handleAlertMessage(FaqNotificationMode.NoData);
+		}
+
+	}, (err: any) => {
+		if(err instanceof TimeoutError){
+			this.handleAlertMessage(FaqNotificationMode.TimeOut);
+			// this.loggerService.logError(`Timeout error occurred while loading data: ${err}`);
+		}else{
+			// this.loggerService.logError(`Error occurred while loading data: ${err}`);
+		}
+	});
+
+}
+
+private handleAlertMessage(mode: FaqNotificationMode){
+	if(mode == FaqNotificationMode.NoData){
+		this.faqNotification.msgNoData = true;
+	}else if(mode == FaqNotificationMode.TimeOut){
+		this.faqNotification.msgTimeOut = true;
+	}
+	this.resetButtonAndSpinner();
+}
+
+private resetButtonAndSpinner(){
+	this.faqSpinner.enableSearch = true;
+	this.faqSpinner.searching = false;
+	this.faqSpinner.allFetching = false;
+}
+
+private refresh(state: ClrDatagridStateInterface){
 	this.faqDatagrid.debouncer.next(state);
+}
+
+private changeStateShowTable(toState: boolean){
+	let fromState: boolean = this.isShowTable;
+	if(( ! fromState ) && toState){
+		this.faqDatagrid.refreshMode = DatagridRefreshMode.SkipEventAtInitRendering;
+	}else{
+		this.faqDatagrid.refreshMode = DatagridRefreshMode.Normal;
+	}
+	this.isShowTable = toState;
+}
+
+private async fetchAllData(): Promise<FetchResult>{
+
+	return await new Promise((resolve, reject) => {
+		this.controllerService.getData()
+		.pipe(takeUntil(this.destroy$))
+		.subscribe((resp: any) => {
+			if(resp){
+				const fetchResult: FetchResult = <FetchResult> {result: resp.data, total: resp.total};
+				resolve(fetchResult);
+			}
+
+		}, (err: any)=> {
+			// this.loggerService.logError(`Error occurred while fetching all data: ${err}`);
+			reject(err);
+		})
+	});
+
 }
 
  private setSorts(initialize: boolean, sortObj: FaqSort, state?: ClrDatagridStateInterface){
@@ -201,6 +306,11 @@ private setSearchingMode(turnOn: boolean){
 	this.faqSpinner.searching = turnOn;
 }
 
+private resetErrMsg(){
+	this.faqNotification.msgNoData = false;
+	this.faqNotification.msgTimeOut = false;
+}
+
 private setAllFetchingMode(turnOn: boolean){
 	if(turnOn){
 		this.hideEmptyDatagrid();
@@ -211,7 +321,7 @@ private setAllFetchingMode(turnOn: boolean){
 
 private hideEmptyDatagrid(){
 	this.changeStateShowTable(false);
-	this.itemsDatagrid = [];
+	this.itemsDataGrid = [];
 	this.numItemsTotal = 0;
 }
 
@@ -242,7 +352,7 @@ private selectionChanged(items: faq[]){
 	// also, see the logic inside the function named refreshDatagrid(), with which this algorithm works complementing each other.
 
 	// update the flag using the triggerred event.
-	this.itemDataGrid.forEach(item => {
+	this.itemsDataGrid.forEach(item => {
 		const found: faq | undefined = this.findOne(items, item.compositeKey);
 		if(found){
 			item.selected = true;
@@ -261,7 +371,7 @@ private selectionChanged(items: faq[]){
 			const found: faq | undefined
 			= this.findOne(this.faqDatagrid.selections.itemsSelected, item.compositeKey);
 			if(! found){
-				this.faqDatagrid.selectons.itemsSelected.push(item);
+				this.faqDatagrid.selections.itemsSelected.push(item);
 			}
 		}else{
 			// if already in there, then remove
