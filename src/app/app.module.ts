@@ -10,6 +10,7 @@ import { BestDealComponent } from './best-deal/best-deal.component';
 import { CartComponent } from './cart/cart.component';
 import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { FaqBoardComponent } from './faq-board/faq-board.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ClarityModule
+    ClarityModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
