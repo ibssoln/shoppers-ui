@@ -83,7 +83,7 @@ export class FetchResult{
 	constructor(){}
 }
 
-export enum DataGridRefreshMode {
+export enum DatagridRefreshMode {
 	Normal,
 	SkipEventAtInitRendering
 }
