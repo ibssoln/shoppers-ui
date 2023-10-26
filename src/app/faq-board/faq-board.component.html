@@ -3,7 +3,7 @@
 
 <div class="flex">
       <input clrInput placeholder="Enter the keyword" name="keyword" />
-      <div style="margin: 8px 0 0 5px;"><button class="btn btn-primary">Search</button></div>
+      <div style="margin: 8px 0 0 5px;"><button class="btn btn-primary" (click)="searchDisplayInitialPage()">Search</button></div>
 </div>
 <br />
 
@@ -13,5 +13,12 @@
     <clr-dg-column>Name</clr-dg-column>
     <clr-dg-column>Creation date</clr-dg-column>
     <clr-dg-column>Favorite color</clr-dg-column>
+
+    <clr-dg-row *ngFor="let item of itemsDataGrid">
+      <clr-dg-cell>{{ item.compositeKey }}</clr-dg-cell>
+      <clr-dg-cell>{{ item.levelName }}</clr-dg-cell>
+      <clr-dg-cell>{{ item.editTime }}</clr-dg-cell>
+      <clr-dg-cell>{{ item.businessId }}</clr-dg-cell>
+    </clr-dg-row>
   
   </clr-datagrid>

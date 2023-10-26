@@ -26,7 +26,8 @@ export class DatagridRepository<T>{
 		if(filterMap){
 			filterMap.forEach((values: string[], key: string, map: Map<string, string[]>) => {
 				const lookups = values.map(value => value.toLowerCase());							
-                this.procData = this.procData?.filter((data: {[key: string]: any}) => {
+                // this.procData = this.procData?.filter((data: {[key: string]: any}) => {
+				this.procData = this.procData?.filter((data: any) => {
 					for(const lookup of lookups){
 						if(data[key].toLowerCase().indexOf(lookup) >= 0){
 							return true;
@@ -43,7 +44,8 @@ export class DatagridRepository<T>{
 	public sort(sort: { by: string, reverse: boolean }): DatagridRepository<T>{
 		this.prepareProcData();
 		if(sort && sort.by){
-			let getSortProperty = (data: {[key: string]: any}) => data[sort.by];
+			// let getSortProperty = (data: {[key: string]: any}) => data[sort.by];
+			let getSortProperty = (data: any) => data[sort.by];
 			this.procData?.sort((s1, s2) => {
 				let result = 0;
 				const s1Val = getSortProperty(s1), s2Val = getSortProperty(s2);

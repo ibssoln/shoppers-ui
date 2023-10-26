@@ -46,7 +46,7 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
     this.refreshDatagrid();
   }
 
-  private searchDisplayInitialPage(){
+  public searchDisplayInitialPage(){
     // this.setSearchUserIdCriteria();
     this.changeStateShowTable(false);
     this.setSearchingMode(true);
