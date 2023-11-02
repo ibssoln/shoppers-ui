@@ -12,7 +12,7 @@ export class ProductService {
   ) { }
 
   private httpOptions = {
-            headers: new HttpHeaders({'Content-Type': 'application/json'});
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
           }
 
   public getEmailPreview(params: any): Observable<any>{
