@@ -19,8 +19,29 @@ export class ProductService {
     return this.httpClient.post<any>('http://localhost:8080/emailPreview', params, this.httpOptions).pipe(catchError(this.handleError));
   }
 
+  public getPrintPreview(params: any): Observable<any>{
+    const headers = { 'Content-Type' : 'application/json' };
+      return this.httpClient.post<any>('http://localhost:8080/printPreview', params, { headers, responseType: 'blob'}).pipe(catchError(this.handleError));
+  }
+
   public sendProofEmail(params: any): Observable<any>{
     return this.httpClient.post<any>('http://localhost:8080/sendEmailProof', params, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  public saveUploadFiles(params: any): Observable<any>{
+    return this.httpClient.put<any>('/uploadFiles', params, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  public deleteUploadedFiles(fileRefId: string): Observable<any>{
+    return this.httpClient.delete<any>(`/files/${fileRefId}`, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  public saveFileInfo(id: string, userId: string, payload: any): Observable<any>{
+    return this.httpClient.post<any>(`/saveFileInfo/${id}/${userId}`, payload, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  public saveItem(params: any): Observable<any>{
+    return this.httpClient.post<any>(`/saveItem`, params, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   private handleError(obj: HttpErrorResponse): any{
