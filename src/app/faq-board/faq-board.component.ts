@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, TimeoutError, debounceTime, takeUntil } from 'rxjs';
 import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, FaqSpinner, faq } from '../shared/datamodel/faq.datagrid.model';
@@ -38,10 +38,10 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
   constructor(
     private formBuilder: FormBuilder,
     private controllerService: ControllerService,
-	public router: Router,
-	private loggerService: LoggerService,
-	private datePipe: DatePipe,
-	private changeDetectorRef: ChangeDetectorRef
+	// public router: Router,
+	// private loggerService: LoggerService,
+	// private datePipe: DatePipe,
+	// private changeDetectorRef: ChangeDetectorRef
   ){
     // this.faqForm = this.formBuilder.group({
     //   keyword: new FormControl('')
