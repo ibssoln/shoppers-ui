@@ -2,6 +2,11 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const routes = require('../route/routes.js');
+const compression = require('compression');
+const https = require('https');
+const httpContext = require('express-http-context');
+const fs = require('fs');
+const cors = require('cors');
 
 module.exports = (config) => {
 
@@ -9,6 +14,7 @@ module.exports = (config) => {
 
     app.use('/', express.static(path.join(__dirname, '../public')));
     app.use(express.json());
+    app.use(httpContext.middleware);
     app.use(bodyParser.urlencoded({ extended: true }));
 
     app.use('/', routes(app, {}));
