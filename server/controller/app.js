@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const routes = require("../route/routes.js");
+const baseRoutes = require("../route/base.routes.js");
+const ssoRoutes = require("../route/sso.routes.js");
 // const compression = require('compression');
 // const https = require('https');
 // const httpContext = require('express-http-context');
@@ -13,10 +14,12 @@ module.exports = (config) => {
 
   app.use("/", express.static(path.join(__dirname, "../public")));
   app.use(express.json());
-//   app.use(httpContext.middleware);
+  // app.use(httpContext.middleware);
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  app.use("/", routes(app, {}));
+  // routes
+  app.use("/", baseRoutes(app, {}));
+  app.use("/", ssoRoutes(app, {}));
 
   if (config.env === "dev") {
     app.locals.pretty = true;
