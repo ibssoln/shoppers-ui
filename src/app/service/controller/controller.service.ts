@@ -1,13 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ControllerService {
 
-  constructor(private http: HttpClient
+  private httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  }
+
+  constructor(
+    private httpClient: HttpClient
     ) { }
 
   public getData(): Observable<any>{
@@ -33,6 +38,19 @@ export class ControllerService {
       ],
       total: 10
     });
+  }
+
+  public getItems(): Observable<any>{
+    return this.httpClient.get<any>(`localhost:8080/product/items`, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  private handleError(obj: HttpErrorResponse): any{
+    if(obj.error){
+      // this.loggerService.logError('An error occurred: ${obj.error.message}');
+    }else{
+      // this.loggerService.logError('An error occurred: status ${obj.status}, ${obj.error}');
+    }
+    return throwError(() => new Error('An error occurred. Please try again.'));
   }
 
 }

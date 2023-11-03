@@ -9,7 +9,7 @@ const logRoutes = require("../route/log.routes.js");
 // const https = require('https');
 // const httpContext = require('express-http-context');
 // const fs = require('fs');
-// const cors = require('cors');
+const cors = require('cors');
 
 module.exports = (config) => {
   const app = express();
@@ -18,6 +18,7 @@ module.exports = (config) => {
   app.use(express.json());
   // app.use(httpContext.middleware);
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(cors());
 
   // routes
   app.use("/", baseRoutes(app, {}));
