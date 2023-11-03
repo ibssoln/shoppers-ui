@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const baseRoutes = require("../route/base.routes.js");
 const ssoRoutes = require("../route/sso.routes.js");
+const roleRoutes = require("../route/role.routes.js");
 const logRoutes = require("../route/log.routes.js");
 // const compression = require('compression');
 // const https = require('https');
@@ -21,6 +22,7 @@ module.exports = (config) => {
   // routes
   app.use("/", baseRoutes(app, {}));
   app.use("/", ssoRoutes(app, {}));
+  // app.use("/", roleRoutes(app, {}));
   // app.use("/", logRoutes(app, {}));
 
   if (config.env === "dev") {
