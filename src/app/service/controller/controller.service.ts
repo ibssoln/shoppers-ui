@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, catchError, map, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class ControllerService {
     private httpClient: HttpClient
     ) { }
 
+  // Note: do not delete until faq is done.  
   public getData(): Observable<any>{
     // return this.http.get<string[]>('/api/data');
     return of({
@@ -41,8 +42,12 @@ export class ControllerService {
   }
 
   public getItems(): Observable<any>{
-    console.log('GETTING ITEMS');
-    return this.httpClient.get<any>(`http://localhost:8081/api/test2`, this.httpOptions).pipe(catchError(this.handleError));
+    return this.httpClient.get<any>(`http://localhost:8081/api/test2`, this.httpOptions).pipe(
+      map(result=>{
+        return result;
+      }),
+      catchError(this.handleError)
+    )
   }
 
   private handleError(obj: HttpErrorResponse): any{
