@@ -42,7 +42,7 @@ export class ControllerService {
   }
 
   public getItems(): Observable<any>{
-    return this.httpClient.get<any>(`http://localhost:8081/api/test2`, this.httpOptions).pipe(
+    return this.httpClient.get<any>(`http://localhost:8081/product/items`, this.httpOptions).pipe(
       map(result=>{
         return result;
       }),
