@@ -19,8 +19,6 @@ export class AppComponent {
 
  private destroy$: Subject<void> = new Subject<void>();
 
- 
-
  constructor(
   private controllerService: ControllerService,
   private httpClient: HttpClient

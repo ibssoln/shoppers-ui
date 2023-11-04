@@ -9,10 +9,6 @@ import { handleError } from 'src/app/shared/function/app.function';
 })
 export class ControllerService {
 
-  private httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  }
-
   constructor(
     private httpClient: HttpClient
     ) { }
@@ -44,7 +40,7 @@ export class ControllerService {
   }
 
   public getItems(): Observable<any>{
-    return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/product/items`, this.httpOptions)
+    return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/product/items`, APP.HTTP_OPTIONS.JSON_SIMPLE)
           .pipe(map((result: any)=>{return result;}), catchError(handleError));
   }
 

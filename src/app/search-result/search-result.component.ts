@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, TimeoutError, debounceTime, takeUntil } from 'rxjs';
-import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, FaqSpinner, faq } from '../shared/datamodel/faq.datagrid.model';
+import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, FaqSpinner, faq } from '../shared/datagrid/faq.datagrid.model';
 import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
-import { DatagridRefreshMode, FetchResult } from '../shared/datamodel/repository.model';
+import { DatagridRefreshMode, FetchResult } from '../shared/datagrid/repository.model';
 import { ControllerService } from '../service/controller/controller.service';
 
 
