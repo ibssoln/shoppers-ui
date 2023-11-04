@@ -2,10 +2,11 @@ const express = require('express');
 const { getLogger } = require('../config/functions');
 const router = express.Router();
 const logger = getLogger();
+const cors = require('cors');
 
-router.get('*', (req, res) => {
+// app.get('*', cors(), (req, res) => {
 
-	const data = req.body;
+// 	const data = req.body;
 	// console.log('body = '+data);
 
 	// data.forEach(function(log){
@@ -26,6 +27,6 @@ router.get('*', (req, res) => {
 	// 	}
 	// });
 	// return res.status(204).send({});
-});
+// });
 
-module.exports = router;
+// module.exports = router;

@@ -41,7 +41,8 @@ export class ControllerService {
   }
 
   public getItems(): Observable<any>{
-    return this.httpClient.get<any>(`localhost:8080/product/items`, this.httpOptions).pipe(catchError(this.handleError));
+    console.log('GETTING ITEMS');
+    return this.httpClient.get<any>(`http://localhost:8081/api/test2`, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   private handleError(obj: HttpErrorResponse): any{

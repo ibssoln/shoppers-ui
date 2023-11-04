@@ -1,8 +1,11 @@
 {
     "/api/*": {
-        "target": "https://shoppers-ui.uc.r.appspot.com",
+        "target": "https://localhost:8081",
         "changeOrigin": true,
         "secure": false,
         "logLevel": "debug"
    }
 }
+
+//gcloud
+//https://shoppers-ui.uc.r.appspot.com

@@ -27,16 +27,16 @@ export class AppComponent {
  ){}
 
   public getData(){
-    this.controllerService.getData().pipe(takeUntil(this.destroy$)).subscribe({next: (respone: any) => {
-      if(respone){
-        this.data = respone;
-        console.log('data = '+this.data);
-      }
-      this.loader = false;
-    }, error: (err: any) => {
-      this.loader = false;
-      // this.logger.logError("An error occurred while getting data. ${err}");
-    }});
+    // this.controllerService.getData().pipe(takeUntil(this.destroy$)).subscribe({next: (respone: any) => {
+    //   if(respone){
+    //     this.data = respone;
+    //     console.log('data = '+this.data);
+    //   }
+    //   this.loader = false;
+    // }, error: (err: any) => {
+    //   this.loader = false;
+    //   // this.logger.logError("An error occurred while getting data. ${err}");
+    // }});
   }
 
   public getItems(){

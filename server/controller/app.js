@@ -21,7 +21,7 @@ module.exports = (config) => {
   app.use(cors());
 
   // routes
-  app.use("/", baseRoutes(app, {}));
+  app.use("/api", baseRoutes(app, {}));
   app.use("/", ssoRoutes(app, {}));
   // app.use("/", roleRoutes(app, {}));
   // app.use("/", logRoutes(app, {}));
