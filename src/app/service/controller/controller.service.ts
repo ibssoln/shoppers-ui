@@ -1,6 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { APP } from 'src/app/shared/constant/app.const';
+import { handleError } from 'src/app/shared/function/app.function';
 
 @Injectable({
   providedIn: 'root'
@@ -42,21 +44,8 @@ export class ControllerService {
   }
 
   public getItems(): Observable<any>{
-    return this.httpClient.get<any>(`http://localhost:8081/product/items`, this.httpOptions).pipe(
-      map(result=>{
-        return result;
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-  private handleError(obj: HttpErrorResponse): any{
-    if(obj.error){
-      // this.loggerService.logError('An error occurred: ${obj.error.message}');
-    }else{
-      // this.loggerService.logError('An error occurred: status ${obj.status}, ${obj.error}');
-    }
-    return throwError(() => new Error('An error occurred. Please try again.'));
+    return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/product/items`, this.httpOptions)
+          .pipe(map((result: any)=>{return result;}), catchError(handleError));
   }
 
 }

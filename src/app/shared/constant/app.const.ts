@@ -1,6 +1,20 @@
-export const API_URL = "http://localhost:8080/";
+// export const API_URL = "http://localhost:8080/";
 
-export namespace Global{
+import { HttpHeaders } from "@angular/common/http";
+
+export namespace APP{
+
+    export class ENDPOINT{
+
+        public static readonly SERVER = 'http://localhost:8081';
+    }
+
+    export class HTTP_OPTIONS{
+
+        public static readonly JSON_SIMPLE = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+          }
+    }
 
     export class DATAGRID{
         public static readonly DATAGRID_DEBOUNCE: number = 500;
