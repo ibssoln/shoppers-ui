@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BestDealComponent,
     CartComponent,
     StoresComponent,
-    FaqBoardComponent
+    FaqBoardComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
