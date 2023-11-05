@@ -3,8 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ControllerService } from '../service/controller/controller.service';
 import { Subject, map, takeUntil } from 'rxjs';
 import { StoreService } from '../service/store/store.service';
-import { Store } from '../shared/model/common.model';
+import { Category, Store } from '../shared/model/common.model';
 import { APP } from '../shared/constant/app.const';
+import { CategoryService } from '../service/category/category.service';
 
 @Component({
   selector: 'app-stores',
@@ -15,6 +16,7 @@ export class StoresComponent {
 
   public storeForm: FormGroup = this.formBuilder.group({});
   public stores: Store[] = [];
+  public categories: Category[] = [];
   public loader: boolean = false;
  
   // prevent memory leak
@@ -23,6 +25,7 @@ export class StoresComponent {
   constructor(
     private formBuilder: FormBuilder,
     private storeService: StoreService,
+    private categoryService: CategoryService,
 	// public router: Router,
 	// private loggerService: LoggerService,
 	// private datePipe: DatePipe,
@@ -34,8 +37,24 @@ export class StoresComponent {
   }
 
   ngOnInit(): void{
+    this.getCategories();
     this.getStores();
 	  // this.storeForm.addControl('keyword', new FormControl('', [Validators.required]));
+  }
+
+  public getCategories(){
+    this.loader = true;
+    this.categoryService.getCategories().pipe(takeUntil(this.destroy$)).subscribe({next: (response: Category[]) => {
+      if(response){
+        response.forEach((category: Category) => {category.image = APP.ENDPOINT.SERVER+'/'+category.image;});
+        this.categories = response;
+        console.log('categories = '+JSON.stringify(this.categories));
+      }
+      this.loader = false;
+    }, error: (err: any) => {
+      this.loader = false;
+      // this.logger.logError("An error occurred while getting data. ${err}");
+    }});
   }
 
   public getStores(){

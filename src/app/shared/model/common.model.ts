@@ -7,3 +7,9 @@ export class Store{
     address: string = '';
     constructor(){};
 }
+
+export class Category{
+    id: string = '';
+    name: string = '';
+    image: string = '';
+}

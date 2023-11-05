@@ -1,25 +1,18 @@
-<h2>Stores</h2>
+<h2>All Stores near You</h2>
 <br /><hr />
 
-<div class="clr-row clr-col-12">
-    <div class="clr-col-12">
-      <div class="card">
-        <h3 class="card-header">Header</h3>
-        <div class="card-block">
-          <h4 class="card-title">Block</h4>
-          <div class="card-text">...</div>
-        </div>
-        <div class="card-footer">
-          <button class="btn btn-sm btn-link">Footer Action 1</button>
-          <button class="btn btn-sm btn-link">Footer Action 2</button>
-        </div>
-      </div>
-    </div>
+<h4 class="category-title">Category</h4>
+  
+<div class="clr-row clr-col-12 category-box">
+          <div class="clr-col-2" *ngFor="let category of categories">
+            <div class="card flex">
+              <div class="card-header"><img [src]="category.image" class="image-square"></div>
+              <div style="margin-top: 25px;">{{ category.name }}</div>
+            </div>
+          </div>
 </div>
 
 <div class="clr-row clr-col-12">
-
-
     <div class="clr-col-3" *ngFor="let store of stores">
       <div class="card">
         <h3 class="card-header">{{ store.name }}</h3>
@@ -36,8 +29,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
 
   

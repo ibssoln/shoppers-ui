@@ -2,8 +2,21 @@
 	display: inline-flex;
 }
 
+.category-title{
+    padding-left: 15px;
+}
+
+.image-square{
+    width: 60px;
+    height: 60px;
+}
+
 .image{
     width: 60px;
+}
+
+.category-box{
+    padding-bottom: 20px;
 }
 
 .card-right{
