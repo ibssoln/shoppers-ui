@@ -12,8 +12,6 @@ import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShopComponent } from './shop/shop.component';
-import { CdsModule } from '@cds/angular';
-import { ClarityIcons, shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon, pinboardIcon } from '@cds/core/icon';
 
 @NgModule({
   declarations: [
