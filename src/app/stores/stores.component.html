@@ -1,39 +1,34 @@
 <h2>All Stores near You</h2>
-<br />
-<hr />
+<br /><hr />
 
 <h4 class="category-title">Category</h4>
-
+  
 <div class="clr-row clr-col-12 category-box">
-  <div class="clr-col-2" *ngFor="let category of categories">
-    <div class="card flex">
-      <div class="card-header">
-        <img [src]="category.image" class="image-square" />
-      </div>
-      <div style="margin-top: 25px">{{ category.name }}</div>
-    </div>
-  </div>
+          <div class="clr-col-2" *ngFor="let category of categories">
+            <div class="card flex">
+              <div class="card-header"><img [src]="category.image" class="image-square"></div>
+              <div style="margin-top: 25px;">{{ category.name }}</div>
+            </div>
+          </div>
 </div>
 
 <div class="clr-row clr-col-12">
-  <div class="clr-col-3" *ngFor="let store of stores">
-    <div class="card">
-      <h3 class="card-header">{{ store.name }}</h3>
-      <div class="card-block flex clr-col-12">
-        <div class="card-text"><img [src]="store.image" class="image" /></div>
-        <div class="card-text card-right">
-          <span class="card-title"
-            ><b>{{ store.name }}</b></span
-          >
-          <div>
-            <i>Open until {{ store.openUntil | date : "shortTime" }}</i>
-          </div>
+    <div class="clr-col-3" *ngFor="let store of stores">
+      <div class="card">
+        <h3 class="card-header">{{ store.name }}</h3>
+        <div class="card-block flex clr-col-12">
+            <div class="card-text"><img [src]="store.image" class="image" /></div>
+            <div class="card-text card-right">
+              <span class="card-title"><b>{{ store.name }}</b></span>
+              <div><i>Open until {{ store.openUntil | date: 'shortTime'}}</i></div>
+            </div>
         </div>
-      </div>
-      <div class="card-footer clr-col-12">
-        <button class="btn btn-sm btn-link" (click)="goToShop()">[Shop]</button>
-        <button class="btn btn-sm btn-link">[View Cart]</button>
+        <div class="card-footer clr-col-12">
+          <button class="btn btn-sm btn-link">[Shop]</button>
+          <button class="btn btn-sm btn-link">[View Cart]</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  

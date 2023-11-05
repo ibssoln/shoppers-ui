@@ -6,7 +6,6 @@ import { StoreService } from '../service/store/store.service';
 import { Category, Store } from '../shared/model/common.model';
 import { APP } from '../shared/constant/app.const';
 import { CategoryService } from '../service/category/category.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stores',
@@ -27,7 +26,7 @@ export class StoresComponent {
     private formBuilder: FormBuilder,
     private storeService: StoreService,
     private categoryService: CategoryService,
-	  private router: Router,
+	// public router: Router,
 	// private loggerService: LoggerService,
 	// private datePipe: DatePipe,
 	// private changeDetectorRef: ChangeDetectorRef
@@ -72,10 +71,6 @@ export class StoresComponent {
       this.loader = false;
       // this.logger.logError("An error occurred while getting data. ${err}");
     }});
-  }
-
-  public goToShop(){
-    this.router.navigate(['/faqBoard']);
   }
 
   ngOnDestroy(): void{

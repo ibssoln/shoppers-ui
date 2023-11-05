@@ -6,7 +6,6 @@ import { BestDealComponent } from './best-deal/best-deal.component';
 import { CartComponent } from './cart/cart.component';
 import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
-import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   { path: 'searchResult', component: SearchResultComponent },
@@ -14,8 +13,7 @@ const routes: Routes = [
   { path: 'stores', component: StoresComponent },
   { path: 'bestDeal', component: BestDealComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'faqBoard', component: FaqBoardComponent },
-  { path: 'shop', component: ShopComponent }
+  { path: 'faqBoard', component: FaqBoardComponent }
 ];
 
 @NgModule({
