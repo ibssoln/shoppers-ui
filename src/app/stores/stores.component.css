@@ -1,0 +1,11 @@
+.flex{
+	display: inline-flex;
+}
+
+.image{
+    width: 60px;
+}
+
+.card-right{
+    margin-left: 15px;
+}

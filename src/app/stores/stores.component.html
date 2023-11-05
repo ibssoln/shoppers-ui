@@ -23,9 +23,12 @@
     <div class="clr-col-3" *ngFor="let store of stores">
       <div class="card">
         <h3 class="card-header">{{ store.name }}</h3>
-        <div class="card-block">
-          <h4 class="card-title">Block</h4>
-          <div class="card-text">...</div>
+        <div class="card-block flex">
+            <div class="card-text"><img [src]="store.image" class="image"></div>
+            <div class="card-text card-right">
+              <span class="card-title"><b>{{ store.name }}</b></span>
+              <div><i>Open until {{ store.openUntil | date: 'shortTime'}}</i></div>
+            </div>
         </div>
         <div class="card-footer">
           <button class="btn btn-sm btn-link">Footer Action 1</button>

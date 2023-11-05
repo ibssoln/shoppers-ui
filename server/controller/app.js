@@ -14,7 +14,7 @@ const cors = require('cors');
 module.exports = (config) => {
   const app = express();
 
-  app.use("/", express.static(path.join(__dirname, "../public")));
+  app.use("/", express.static(path.join(__dirname, "../../public")));
   app.use(express.json());
   // app.use(httpContext.middleware);
   app.use(bodyParser.urlencoded({ extended: true }));

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControllerService } from '../service/controller/controller.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 import { StoreService } from '../service/store/store.service';
 import { Store } from '../shared/model/common.model';
+import { APP } from '../shared/constant/app.const';
 
 @Component({
   selector: 'app-stores',
@@ -41,8 +42,10 @@ export class StoresComponent {
     this.loader = true;
     this.storeService.getStores().pipe(takeUntil(this.destroy$)).subscribe({next: (respone: Store[]) => {
       if(respone){
+        respone.forEach((store: Store) => {store.image = APP.ENDPOINT.SERVER+'/'+store.image;});
         this.stores = respone;
         console.log('stores = '+JSON.stringify(this.stores));
+        console.log('date time = '+new Date());
       }
       this.loader = false;
     }, error: (err: any) => {
