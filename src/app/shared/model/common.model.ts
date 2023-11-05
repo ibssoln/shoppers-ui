@@ -13,3 +13,19 @@ export class Category{
     name: string = '';
     image: string = '';
 }
+
+export class Item{
+    id: string = '';
+    name: string = '';
+    price: string = '';
+    vendor: Vendor = new Vendor();
+    specialDeal: string = '';
+    image: string = '';
+}
+
+export class Vendor{
+    id: string = '';
+    name: string = '';
+    address: string = '';
+    factoryLoc: string = '';
+}
