@@ -5,7 +5,7 @@ import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, 
 import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { DatagridRefreshMode, FetchResult } from '../shared/datagrid/repository.model';
 import { ControllerService } from '../service/controller/controller.service';
-import { Router } from '@angular/router';
+import { Router } from 'express';
 import { DatePipe } from '@angular/common';
 
 @Component({
