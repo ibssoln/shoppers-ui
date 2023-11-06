@@ -37,8 +37,12 @@ export class SessionDataService {
     // private loggerService: LoggerService
   ) { }
 
-  public updateSessionData(sessionData: any): void{
+  public updateSessionData(sessionData: SessionData): void{
     this.sessionData.next(sessionData);
+  }
+
+  public getSessionData(): SessionData{
+    return this.sessionData.getValue();
   }
 
   // public loadUserSSOAuthenticationInfo(userInfo: User): void{

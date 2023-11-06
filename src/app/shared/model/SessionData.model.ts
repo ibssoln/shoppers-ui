@@ -9,6 +9,7 @@ export class SessionData{
 
 export class ShopType{
     shopId: string = '';
+	shopName: string = '';
 }
 
 export class ItemType{

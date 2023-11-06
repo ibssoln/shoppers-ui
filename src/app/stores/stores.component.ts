@@ -7,6 +7,7 @@ import { Category, Store } from '../shared/model/common.model';
 import { APP } from '../shared/constant/app.const';
 import { CategoryService } from '../service/category/category.service';
 import { Router } from '@angular/router';
+import { SessionDataService } from '../service/session/session-data.service';
 
 @Component({
   selector: 'app-stores',
@@ -28,6 +29,7 @@ export class StoresComponent {
     private storeService: StoreService,
     private categoryService: CategoryService,
     private router: Router,
+    private sessionDataService: SessionDataService,
 	// private loggerService: LoggerService,
 	// private datePipe: DatePipe,
 	// private changeDetectorRef: ChangeDetectorRef
@@ -74,7 +76,10 @@ export class StoresComponent {
     }});
   }
 
-  public goToShop(){
+  public goToShop(store: Store){
+    let sessionData = this.sessionDataService.getSessionData();
+    sessionData.shop.shopId = store.id;
+    sessionData.shop.shopName = store.name;
     this.router.navigate(['/shop']);
   }
 
