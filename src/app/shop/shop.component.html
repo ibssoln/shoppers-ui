@@ -1,1 +1,20 @@
-<p>shop works!</p>
+<h2>Shop</h2>
+<br /><hr />
+
+<div class="clr-row clr-col-12">
+    <div class="clr-col-3" *ngFor="let item of items">
+      <div class="card">
+        <h3 class="card-header">{{ item.name }}</h3>
+        <div class="card-block flex clr-col-12">
+            <div class="card-text"><img [src]="item.image" class="image" /></div>
+            <div class="card-text card-right">
+              <div class="card-title">Price: <b>${{ item.price }}</b></div>
+              <div class="card-title">Weight: <b>{{ item.price }}</b></div>
+              <div class="card-title">Event: <b>{{ item.price }}</b></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
