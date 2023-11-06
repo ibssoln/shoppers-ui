@@ -9,6 +9,7 @@ import { FaqBoardComponent } from './faq-board/faq-board.component';
 import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/stores', pathMatch: 'full' },
   { path: 'searchResult', component: SearchResultComponent },
   { path: 'accountSetting', component: AccountSettingComponent },
   { path: 'stores', component: StoresComponent },
