@@ -22,3 +22,8 @@
 .card-right{
     margin-left: 15px;
 }
+
+.event{
+    text-align: center; 
+    background-color: yellow;
+}

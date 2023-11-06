@@ -21,6 +21,8 @@ export class Item{
     vendor: Vendor = new Vendor();
     specialDeal: string = '';
     image: string = '';
+    weight: string = '';
+    event: Event = new Event();
 }
 
 export class Vendor{
@@ -28,4 +30,11 @@ export class Vendor{
     name: string = '';
     address: string = '';
     factoryLoc: string = '';
+}
+
+export class Event{
+    id: string = '';
+    name: string = '';
+    start_date: Date = new Date();
+    end_date: Date = new Date();
 }

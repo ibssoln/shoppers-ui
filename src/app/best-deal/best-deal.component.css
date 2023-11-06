@@ -27,3 +27,8 @@
    text-decoration:line-through;
    font-style: italic; 
 }
+
+.event{
+    text-align: center; 
+    background-color: yellow;
+}

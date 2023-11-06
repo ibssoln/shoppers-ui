@@ -5,12 +5,13 @@
     <div class="clr-col-3" *ngFor="let item of items">
       <div class="card">
         <h3 class="card-header">{{ item.name }}</h3>
+        <div class="event" *ngIf="item.event">{{ item.event.name }} Event</div>
+        <div class="event" *ngIf="item.event">{{ item.event.start_date | date: 'yyyy-MM-dd' }} ~ {{ item.event.end_date | date: 'yyyy-MM-dd' }}</div>
         <div class="card-block flex clr-col-12">
             <div class="card-text"><img [src]="item.image" class="image" /></div>
             <div class="card-text card-right">
-              <div class="card-title">Price: <b>${{ item.price }}</b></div>
-              <div class="card-title">Weight: <b>{{ item.price }}</b></div>
-              <div class="card-title">Event: <b>{{ item.price }}</b></div>
+              <div class="card-title">Price: ${{ item.price }}</div>
+              <div class="card-title">Weight: {{ item.weight }}</div>
             </div>
         </div>
         <div class="card-footer clr-col-12">
