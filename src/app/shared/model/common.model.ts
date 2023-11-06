@@ -6,6 +6,12 @@ export class Store{
     registeredAt: Date = new Date();
     address: string = '';
     constructor(){};
+    static build(id: string, name: string){
+		let obj = new Store();
+		obj.id = id;
+		obj.name = name;
+		return obj;
+	}
 }
 
 export class Category{
