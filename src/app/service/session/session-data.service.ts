@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, skipWhile, take } from 'rxjs';
+import { APP } from 'src/app/shared/constant/app.const';
+import { SessionData } from 'src/app/shared/model/SessionData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +9,135 @@ import { BehaviorSubject } from 'rxjs';
 export class SessionDataService {
   
   private sessionData = new BehaviorSubject<SessionData>(new SessionData());
-  public sessionData$ = this.sessionData.asObserable();
+  public sessionData$ = this.sessionData.asObservable();
   public isRolePoliciesLoaded: boolean = false;
 
+  // private sessionState = new BehaviorSubject<sessionState>(new sessionState());
+  // public sessionStateData$ = this.sessionState.asObservable();
+  // public isFortressPoliciesLoaded: boolean = false;
 
+  // public isPowerUser: boolean = false;
+  // public powerUserAsAdmin: authoirzationType = new authorizationType();
+  // public powerUserAsSSS: authorizationType = new authorizationType();
+  // public useSSSForPowerUserRole: boolean = false;
 
-  constructor() { }
+  // public refreshRole$ = new BehaviorSubject<boolean>(false);
+  // public isOptionsFormValid = false;
+  // public saveExitOptions$ = new BehaviorSubject<boolean>(false);
+  // public saveExitEmail$ = new BehaviorSubject<boolean>(false);
+  // public saveExitPrint$ = new BehaviorSubject<boolean>(false);
 
+  // // archive the last unsaved ready-to-save sessionState
+  // public archiveReadyToSavesessionState$ = new BehaviorSubject<archiveReadyToSavesessionStateType>(new archiveReadyToSavesessionStateType());
 
+  // // session
+  // public timedOut$ = new BehaviorSubject<boolean>(false);
 
+  constructor(
+    // private loggerService: LoggerService
+  ) { }
+
+  // public updatesessionState(item: any): void{
+  //   this.sessionState.next(item);
+  // }
+
+  // public loadUserSSOAuthenticationInfo(userInfo: User): void{
+  //   this.sessionStateData$.pipe(skipWhile(value => !value), take(1)).subscribe(sessionStateData => {
+  //     sessionStateData.auth.setIdName(userInfo.corpId, userInfo.firstName, userInfo.lastName);
+  //     this.updatesessionState(sessionStateData);
+  //   });
+  // }
+
+  // public loadUserFortressAuthorizationInfo(userId: string): void{
+  //   if(!!userId && userId.trim()!=''){
+  //     this.userinfoService.getUserRolesAndPolicies(userId).subscribe({next: (fortressUser: authorizationType) => {
+  //       if(!!fortressUser && (userId.trim().toUpperCase() == fortressUser.userID?.trim().toUpperCase())
+  //       && !!fortressUser.activeRole?.role && fortressUser.activePolicies?.length>0){
+  //         fortressUser.activePolicies.forEach((pol: userPolicyType) => {
+  //           const polName = APP.APP_POLICY.POLICY_NAMES.get(pol.code);
+  //           pol.name = (!!polName)? polName.toUpperCase() : '';
+  //         });
+  //         if(fortressUser.activeRole?.role=='POWER_USER'){
+  //           this.isPowerUser = true;
+  //           this.powerUserAsSSS = this.buildSSSUserFromPowerUser(fortressUser);
+  //           this.powerUserAsAdmin = this.buildAdminUserFromPowerUser(fortressUser);
+  //           fortressUser = Object.assign({}, this.powerUserAsAdmin);
+  //         }
+  //         this.sessionStateData$.pipe(skipWhile(value => !value), take(1)).subscribe(sessionStateData => {
+  //           sessionStateData.authorization
+  //           = authorizationType.build(fortressUser.userID?.trim().toUpperCase(), fortressUser.activeRole, fortressUser.activePolicies);
+  //           this.updatesessionState(sessionStateData);
+  //         });
+  //       }
+  //       this.isFortressPoliciesLoaded = true;
+  
+  //     }, error: (err: any) => {
+  //       this.loggerService.logError('An error occurred while getting fortress info for an SSO user. '+err);
+  //     }});
+  //   }
+  
+  // }
+
+  // public initsessionState(){
+  //   this.sessionStateData$.pipe(skipWhile(value => !value), take(1)).subscribe(sessionState => {
+  //     let newsessionState = new sessionState();
+  //     newsessionState.auth.setIdName(sessionState.auth.id, sessionState.auth.firstName, sessionState.auth.lastName);
+  //     newsessionState.authorization = {...sessionState.authorization};
+  //     this.updatesessionState(newsessionState);
+  //   });
+  // }
+
+  // public sanitizesessionStateForDBSaving(sessionState: sessionState): any{
+  //   const ui = sessionState.ui;
+  //   delete sessionState.ui;
+  //   return ui;
+  // }
+
+  // public restoreUI(sessionState: sessionState, ui: any){
+  //   sessionState.ui = ui;
+  // }
+
+  // public loadsessionState(copyState: any){
+  //   this.sessionStateData$.pipe(skipWhile(value => !value), take(1)).subscribe(prevsessionState => {
+  //     let newsessionState = new sessionState();
+  //     newsessionState.auth.setIdName(prevsessionState.auth.id, prevsessionState.auth.firstName, prevsessionState.auth.lastName);
+  //     newsessionState.authorization = {...prevsessionState.authorization};
+  //     newsessionState = copysessionStateDetails(newsessionState, copyState);
+  //     this.updatesessionState(newsessionState);
+  //   });
+  
+  // }
+
+  // private buildSSSUserFromPowerUser(powerUser: authorizationType): any{
+  //   let sssCopy: authorizationType = Object.assign({}, powerUser);
+  //   sssCopy.activeRole = Object.assign({}, APP.ROLE_CONSTANTS.SSS_USER_ACTIVE_ROLE);
+  //   let allowedSssPolicies: Array<userPolicyType> = [];
+  //   sssCopy.activePolicies.forEach((pol: userPolicyType) => {
+  //     if((pol.code=='AAAA') || (pol.code=='BBBB')){
+  //       allowedSssPolicies.push(Object.assign({}, pol));
+  //     }
+  //   });
+  //   sssCopy.activePolicies = [...allowedSssPolicies];
+  //   return Object.assign({}, sssCopy);
+  // }
+
+  // private buildAdminUserFromPowerUser(powerUser: authorizationType): any{
+  //   let adminCopy: authorizationType = Object.assign({}, powerUser);
+  //   adminCopy.activeRole = Object.assign({}, APP.ROLE_CONSTANTS.ADMIN_ACTIVE_ROLE);
+  //   return Object.assign({}, adminCopy);
+  // }
+
+  // public switchUserRole(useSss: boolean){
+  //   this.useSssForPowerUserRole = useSss;
+  //   let userRoleIdentity: authorizationType = Object.assign({}, (useSss)? this.powerUserAsSSS : this.powerUserAsAdmin);
+  //   if(!!userRoleIdentity && !!userRoleIdentity.userID){
+  //     this.sessionStateData$.pipe(skipWhile(value => !value), take(1)).subscribe)(sessionStateData => {
+  //       sessionStateData.authorization
+  //       = authorizationType.build(userRoleIdentity.userID?.trim().toUpperCase(), userRoleIdentity.activeRole, userRoleIdentity.activePolicies);
+  //       this.updatesessionState(sessionStateData);
+  //       this.refreshRole$.next(true);
+  //     });
+  //   }
+  // }
 
 }
