@@ -6,7 +6,7 @@ import { ItemService } from '../service/item/item.service';
 import { Router } from '@angular/router';
 import { APP } from '../shared/constant/app.const';
 import { SessionDataService } from '../service/session/session-data.service';
-import { ShopType } from '../shared/model/SessionData.model';
+import { CartItemType, CartType, SessionData } from '../shared/model/SessionData.model';
 
 @Component({
   selector: 'app-shop',
@@ -15,8 +15,9 @@ import { ShopType } from '../shared/model/SessionData.model';
 })
 export class ShopComponent {
 
+  public sessionData: SessionData = new SessionData();
   public shopForm: FormGroup = this.formBuilder.group({});
-  public currentShop: ShopType = new ShopType();
+  public currentShop: Store = new Store();
   public items: Item[] = [];
   public loader: boolean = false;
  
@@ -38,19 +39,19 @@ export class ShopComponent {
   }
 
   ngOnInit(): void{
-    this.loadStoreInfo();
+    this.loadSessionStoreInfo();
     this.getItemsByShop();
 	  // this.storeForm.addControl('keyword', new FormControl('', [Validators.required]));
   }
 
-  public loadStoreInfo(){
-    let sessionData = this.sessionDataService.getSessionData();
-    this.currentShop = sessionData.shop;
+  public loadSessionStoreInfo(){
+    this.sessionData = this.sessionDataService.getSessionData();
+    this.currentShop = this.sessionData.shop;
   }
 
   public getItemsByShop(){
     this.loader = true;
-    this.itemService.getItemsByShop(this.currentShop.shopId).pipe(takeUntil(this.destroy$)).subscribe({next: (response: Item[]) => {
+    this.itemService.getItemsByShop(this.currentShop.id).pipe(takeUntil(this.destroy$)).subscribe({next: (response: Item[]) => {
       if(response){
         response.forEach((item: Item) => {item.image = APP.ENDPOINT.SERVER+'/'+item.image;});
         this.items = response;
@@ -61,6 +62,17 @@ export class ShopComponent {
       this.loader = false;
       // this.logger.logError("An error occurred while getting items. ${err}");
     }});
+  }
+
+  public addToCart(item: Item){
+    let carts: CartType[] = this.sessionData.carts.filter(cart => (cart.store.id == this.currentShop.id));
+    if(carts[0]){
+      carts[0].cartItems.push(CartItemType.build(item, 1, new Date()));
+    }else{
+      let newCart = CartType.build(this.currentShop, [CartItemType.build(item, 1, new Date())]);
+      this.sessionData.carts.push(newCart);
+    }
+    console.log('cart = '+JSON.stringify(this.sessionData.carts));
   }
 
   ngOnDestroy(): void{

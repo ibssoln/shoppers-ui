@@ -78,8 +78,7 @@ export class StoresComponent {
 
   public goToShop(store: Store){
     let sessionData = this.sessionDataService.getSessionData();
-    sessionData.shop.shopId = store.id;
-    sessionData.shop.shopName = store.name;
+    sessionData.shop = store;
     this.router.navigate(['/shop']);
   }
 

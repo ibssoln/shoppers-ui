@@ -1,15 +1,39 @@
+import { Item, Store } from "./common.model";
+
 export class SessionData{
 	authentication: AuthcType = new AuthcType();
 	authorization: AuthrType = new AuthrType();
-	shop: ShopType = new ShopType();
+	shop: Store = new Store();
 	item: ItemType = new ItemType();
+	carts: CartType[] = [];
 	status: StatusType = new StatusType();
 	uiState: uiStateType = new uiStateType();	
 }
 
-export class ShopType{
-    shopId: string = '';
-	shopName: string = '';
+export class CartType{
+	store: Store = new Store();
+	cartItems: CartItemType[] = [];
+	constructor(){};
+	static build(store: Store, cartItems: CartItemType[]){
+		let obj = new CartType();
+		obj.store = store;
+		obj.cartItems = cartItems;
+		return obj;
+	}
+}
+
+export class CartItemType{
+	item: Item = new Item();
+	count: number = 0;
+	loadedAt: Date = new Date();
+	constructor(){};
+	static build(item: Item, count: number, loadedAt: Date){
+		let obj = new CartItemType();
+		obj.item = item;
+		obj.count = count;
+		obj.loadedAt = loadedAt;
+		return obj;
+	}
 }
 
 export class ItemType{
