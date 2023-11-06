@@ -37,9 +37,9 @@ export class SessionDataService {
     // private loggerService: LoggerService
   ) { }
 
-  // public updatesessionState(item: any): void{
-  //   this.sessionState.next(item);
-  // }
+  public updateSessionData(sessionData: any): void{
+    this.sessionData.next(sessionData);
+  }
 
   // public loadUserSSOAuthenticationInfo(userInfo: User): void{
   //   this.sessionStateData$.pipe(skipWhile(value => !value), take(1)).subscribe(sessionStateData => {
