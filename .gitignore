@@ -175,4 +175,3 @@ build/*
 dist/*
 
 # Angular
-package-lock.json
