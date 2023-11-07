@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
 import { ShopComponent } from './shop/shop.component';
+import { WriteComponent } from './write/write.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/stores', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'bestDeal', component: BestDealComponent },
   { path: 'cart', component: CartComponent },
   { path: 'faqBoard', component: FaqBoardComponent },
-  { path: 'shop', component: ShopComponent }
+  { path: 'shop', component: ShopComponent },
+  { path: 'write', component: WriteComponent }
 ];
 
 @NgModule({

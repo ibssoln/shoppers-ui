@@ -12,6 +12,9 @@ import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShopComponent } from './shop/shop.component';
+import { WriteComponent } from './write/write.component';
+import { QuillModule } from 'ngx-quill';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ShopComponent } from './shop/shop.component';
     CartComponent,
     StoresComponent,
     FaqBoardComponent,
-    ShopComponent
+    ShopComponent,
+    WriteComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { ShopComponent } from './shop/shop.component';
     HttpClientModule,
     ClarityModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule, ReactiveFormsModule, 
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
