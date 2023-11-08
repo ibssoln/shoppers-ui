@@ -1,22 +1,45 @@
-<h2>Cart</h2>
+<h2>{{ currentShop.name }} Cart</h2>
 <br /><hr />
 
-<div class="clr-row clr-col-12">
+<div class="clr-row clr-col-12" *ngIf="currentShop.name">
   <div class="clr-col-12">
     <div class="card">
-      <h3 class="card-header">Items in your Store Cart</h3>
-      <div class="card-block">
-        <h4 class="card-title">Item 1</h4>
-        <div class="card-text">...</div>
+      <h3 class="card-header">Shopped at {{ currentShop.name }}</h3>
+
+      <div class="card-block" *ngFor="let basket of currentItems">
+
+        <div class="clr-row clr-col-12 flex">
+          <div class="clr-col-3 align-center"><img [src]="basket.item.image" class="image-square" /></div>
+          <div class="clr-col-3">
+            <h4 class="card-title align-center">{{ basket.item.name }}</h4>
+          </div>
+          <div class="clr-col-3 align-right">
+            <div class="card-text">{{ basket.count }}</div>
+          </div>
+          <div class="clr-col-3 align-right"><div class="card-text">${{ basket.item.price }}</div></div>
+        </div>
+        <div class="clr-row clr-col-12 flex align-center">
+          <div class="clr-col-3"></div>
+          <div class="clr-col-3"><button class="btn btn-sm btn-primary">Add Instruction</button></div>
+          <div class="clr-col-3"><button class="btn btn-sm btn-primary">Delete</button></div>
+          <div class="clr-col-3"></div>
+        </div>
+       
       </div>
-      <div class="card-block">
-        <h4 class="card-title">Item 2</h4>
-        <div class="card-text">...</div>
+
+      <div class="card-block clr-col-12 flex">
+        <div class="clr-col-9"></div>
+        <div class="clr-col-3 cart-total"><b>${{ 123 }}</b></div>
       </div>
-      <div class="card-block">
-        <h4 class="card-title">Item 3</h4>
-        <div class="card-text">...</div>
-      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="clr-row clr-col-12" *ngIf="!currentShop.name">
+  <div class="clr-col-12">
+    <div class="card">
+      <h3 class="card-header">Cart is currently empty.</h3>
     </div>
   </div>
 </div>

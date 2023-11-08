@@ -1,0 +1,23 @@
+.flex{
+    display: flex;
+}
+
+.image-square{
+    width: 30px;
+    height: 30px;
+}
+
+.align-center{
+    text-align: center;
+    padding: 8px 0 0 0;
+}
+
+.align-right{
+    text-align: right;
+    padding: 8px 50px 15px 0;
+}
+
+.cart-total{
+    text-align: right;
+    padding: 8px 75px 15px 0;
+}

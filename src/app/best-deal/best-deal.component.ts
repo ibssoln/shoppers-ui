@@ -6,6 +6,7 @@ import { ItemService } from '../service/item/item.service';
 import { APP } from '../shared/constant/app.const';
 import { SessionDataService } from '../service/session/session-data.service';
 import { CartItemType, CartType, SessionData } from '../shared/model/SessionData.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-best-deal',
@@ -28,6 +29,7 @@ export class BestDealComponent {
     private formBuilder: FormBuilder,
     private itemService: ItemService,
     private sessionDataService: SessionDataService,
+	  private router: Router,
 	// public router: Router,
 	// private loggerService: LoggerService,
 	// private datePipe: DatePipe,
@@ -46,7 +48,7 @@ export class BestDealComponent {
 
   public loadSessionStoreInfo(){
     this.sessionData = this.sessionDataService.getSessionData();
-    this.currentShop = Store.build('999999', 'ONLINESTORE');
+    this.currentShop = Store.build('999999', 'Best Deal Online Store');
   }
 
   public getSpecialDealItems(){
@@ -73,6 +75,9 @@ export class BestDealComponent {
       this.sessionData.carts.push(newCart);
     }
     console.log('cart = '+JSON.stringify(this.sessionData.carts));
+    let sessionData = this.sessionDataService.getSessionData();
+    sessionData.shop = this.currentShop;
+    this.router.navigate(['/cart']);
   }
 
   ngOnDestroy(): void{
@@ -81,3 +86,4 @@ export class BestDealComponent {
   }
 
 }
+

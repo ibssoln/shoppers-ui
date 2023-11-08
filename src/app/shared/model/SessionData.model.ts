@@ -25,7 +25,7 @@ export class CartType{
 export class CartItemType{
 	item: Item = new Item();
 	count: number = 0;
-	loadedAt: Date = new Date();
+	loadedAt: Date | any = new Date();
 	constructor(){};
 	static build(item: Item, count: number, loadedAt: Date){
 		let obj = new CartItemType();

@@ -2,8 +2,8 @@ export class Store{
     id: string = '';
     name: string = '';
     image: string = '';
-    openUntil: Date = new Date();
-    registeredAt: Date = new Date();
+    openUntil: Date | any = new Date();
+    registeredAt: Date | any = new Date();
     address: string = '';
     constructor(){};
     static build(id: string, name: string){
@@ -28,7 +28,7 @@ export class Item{
     specialDeal: string = '';
     image: string = '';
     weight: string = '';
-    event: Event = new Event();
+    event: Event | any = new Event();
 }
 
 export class Vendor{
@@ -41,6 +41,6 @@ export class Vendor{
 export class Event{
     id: string = '';
     name: string = '';
-    start_date: Date = new Date();
-    end_date: Date = new Date();
+    start_date: Date | any = new Date();
+    end_date: Date | any = new Date();
 }
