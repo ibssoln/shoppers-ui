@@ -73,6 +73,15 @@ export class ShopComponent {
       this.sessionData.carts.push(newCart);
     }
     console.log('cart = '+JSON.stringify(this.sessionData.carts));
+    let sessionData = this.sessionDataService.getSessionData();
+    sessionData.shop = this.currentShop;
+    this.router.navigate(['/cart']);
+  }
+
+  public goToCart(){
+    let sessionData = this.sessionDataService.getSessionData();
+    sessionData.shop = this.currentShop;
+    this.router.navigate(['/cart']);
   }
 
   ngOnDestroy(): void{

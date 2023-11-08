@@ -82,6 +82,12 @@ export class StoresComponent {
     this.router.navigate(['/shop']);
   }
 
+  public goToCart(store: Store){
+    let sessionData = this.sessionDataService.getSessionData();
+    sessionData.shop = store;
+    this.router.navigate(['/cart']);
+  }
+
   ngOnDestroy(): void{
     this.destroy$.next();
     this.destroy$.complete();

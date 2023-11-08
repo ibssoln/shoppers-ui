@@ -14,7 +14,7 @@
 
 <div class="clr-row clr-col-12">
     <div class="clr-col-3" *ngFor="let store of stores">
-      <div class="card">
+      <div class="card" (click)="goToShop(store)">
         <h3 class="card-header">{{ store.name }}</h3>
         <div class="card-block flex clr-col-12">
             <div class="card-text"><img [src]="store.image" class="image" /></div>
@@ -25,7 +25,7 @@
         </div>
         <div class="card-footer clr-col-12">
           <button class="btn btn-sm btn-primary" (click)="goToShop(store)">Shop Items</button>
-          <button class="btn btn-sm btn-primary">View Shop Cart</button>
+          <button class="btn btn-sm btn-primary" (click)="goToCart(store)">View Shop Cart</button>
         </div>
       </div>
     </div>
