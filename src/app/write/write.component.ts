@@ -57,12 +57,7 @@ export class WriteComponent {
 
   blured = false
   focused = false
-
-  changedEditor(event: EditorChangeContent | EditorChangeSelection) {
-    // tslint:disable-next-line:no-console
-    console.log('editor-change', event)
-  }
-
+  
   focus($event: any) {
     // tslint:disable-next-line:no-console
     console.log('focus', $event)
@@ -86,6 +81,11 @@ export class WriteComponent {
     console.log('editor-created', event)
     this.editorInstance = editorInstance;
     this.varForm.controls['varData'].setValue('');
+  }
+
+  changedEditor(event: EditorChangeContent | EditorChangeSelection) {
+    // tslint:disable-next-line:no-console
+    console.log('editor-change', event)
   }
 
   public enterVariable(event: any){

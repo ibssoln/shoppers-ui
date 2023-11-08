@@ -25,5 +25,6 @@
 
 .event{
     text-align: center; 
-    background-color: yellow;
+    padding: 5px 0 5px 0;
+    background-color: rgb(252, 252, 157);
 }

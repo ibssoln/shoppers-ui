@@ -5,8 +5,11 @@
     <div class="clr-col-3" *ngFor="let item of items">
       <div class="card">
         <h3 class="card-header">{{ item.name }}</h3>
-        <div class="event" *ngIf="item.event">{{ item.event.name }} Event</div>
-        <div class="event" *ngIf="item.event">{{ item.event.start_date | date: 'yyyy-MM-dd' }} ~ {{ item.event.end_date | date: 'yyyy-MM-dd' }}</div>
+        <div class="event" *ngIf="item.event">
+          <span class="label label-purple">{{ item.event.name }} Event
+            ({{ item.event.start_date | date: 'yyyy-MM-dd' }} ~ {{ item.event.end_date | date: 'yyyy-MM-dd' }})
+          </span>
+        </div>
         <div class="card-block flex clr-col-12">
             <div class="card-text"><img [src]="item.image" class="image" /></div>
             <div class="card-text card-right">
