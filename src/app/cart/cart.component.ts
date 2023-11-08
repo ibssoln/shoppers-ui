@@ -49,6 +49,12 @@ export class CartComponent {
     this.currentItems = this.currentCart?.cartItems ?? [];
   }
 
+  public currentTotal(): number{
+    let total: number = 0;
+    this.currentItems.forEach(basket => {total += Number(basket.item.price);});
+    return total;
+  }
+
   ngOnDestroy(): void{
     this.destroy$.next();
     this.destroy$.complete();

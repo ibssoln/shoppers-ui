@@ -3,8 +3,8 @@
 }
 
 .image-square{
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
 }
 
 .align-center{
@@ -20,4 +20,9 @@
 .cart-total{
     text-align: right;
     padding: 8px 75px 15px 0;
+}
+
+.btn-checkout{
+    text-align: right;
+    padding: 8px 45px 15px 0;
 }

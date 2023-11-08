@@ -29,7 +29,12 @@
 
       <div class="card-block clr-col-12 flex">
         <div class="clr-col-9"></div>
-        <div class="clr-col-3 cart-total"><b>${{ 123 }}</b></div>
+        <div class="clr-col-3 cart-total"><b>${{ currentTotal() | number:'1.0-2' }}</b></div>
+      </div>
+
+      <div class="card-block clr-col-12 flex">
+        <div class="clr-col-9"></div>
+        <div class="clr-col-3 btn-checkout"><button class="btn btn-lg btn-primary">Checkout</button></div>
       </div>
      
     </div>
