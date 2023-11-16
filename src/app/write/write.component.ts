@@ -82,6 +82,101 @@ export class WriteComponent {
     // console.log('editor-created', event)
     this.editorInstance = editorInstance;
     this.varForm.controls['varData'].setValue('');
+
+    //------------ additional -------
+    this.editorInstance.keyboard.addBinding({ key: 'Delete' }, 
+    {
+      format: ['code']
+    },
+    (range: any, context: any) => {
+      console.log('# Delete = range='+JSON.stringify(range)+', conext='+JSON.stringify(context));
+    });
+
+    //------------ additional -------
+    this.editorInstance.keyboard.addBinding({ key: 'K', shiftKey: null, altKey: null, metaKey:null, ctrlKey:null, shortKey: null }, 
+    {
+      format: ['code']
+    },
+    (range: any, context: any) => {
+      console.log('# K = range='+JSON.stringify(range)+', conext='+JSON.stringify(context));
+    });
+
+    //------------ final solution -------
+    this.editorInstance.keyboard.addBinding({ key: 'Backspace' }, 
+    {
+      format: ['code', 'list']
+    },
+    (range: any, context: any) => {
+      console.error('Backspace pressed');
+      if(context.format.list){
+        console.error('list');
+        this.editorInstance.format('list', false);
+      }else{
+        console.error('code');
+        //------------ determine which element was clicked & delte it --------
+        const index = this.editorInstance.getSelection(true).index;
+        const clip = this.editorInstance.clipboard.convert(
+          this.editorInstance.selection.root.innerHTML
+        );    
+        console.log('html = '+JSON.stringify(clip));
+        let count = 0;
+        let before, after, iter = 0;
+        let found: any;
+        let newText = new Delta();
+        clip.map((op: any) => {
+          iter++;
+          before = count;
+          count += op.insert.length;
+          after = count;
+          if((index > before) && (index <= after)){
+            found = op.insert+iter;
+            // newText.insert(op.insert, op.attributes);
+          }else{
+            newText.insert(op.insert, op.attributes);
+          }
+        })
+        .join('');
+        console.log('total count = '+count);
+        console.log('before = '+before);
+        console.log('====> index = '+index+'<======');
+        console.log('after = '+after);
+        console.log('>> found = '+found);
+        console.log('total iter = '+iter);
+        //------------ determine which element was clicked --------
+        //------------------ change the results ===============
+        // let count2 = 0;
+        // let final, skip: any;
+        // let newText = new Delta();
+        // const text = clip
+        // // .filter((op: any) => typeof op.insert == 'string')
+        // .map((op: any) => {
+        //   count2++;
+        //   if(op.insert+count2 != found){
+        //     final = op.insert+count2;
+        //     newText.insert(op.insert, op.attributes);
+        //   }else{
+        //     skip = op.insert+count2;
+        //     // newText.delete(op.insert);
+        //   }
+        // })
+        // .join('');
+        // console.log('#final  = '+final);
+        // console.log('#skip  = '+skip);
+        console.log('newText = '+JSON.stringify(newText));
+        //parse
+        // const clipboardDelta = this.editorInstance.clipboard.convert(
+        //   newText
+        // );
+
+        //---------------- empty out
+        this.emptyOut();
+        //---------------- empty out
+       
+        const delta = new Delta().concat(newText);
+        this.editorInstance.updateContents(delta, 'user');
+        //------------------ change the results ===============
+      }
+    });
   }
 
   changedEditor(event: EditorChangeContent | EditorChangeSelection) {
@@ -133,27 +228,27 @@ export class WriteComponent {
     );    
     console.log('html = '+JSON.stringify(clip));
 
-//------------ determine which element was clicked --------
-// let count = 0;
-// let before, after, iter = 0;
-// let found: any;
-// clip
-// .map((op: any) => {
-//   iter++;
-//   before = count;
-//   count += op.insert.length;
-//   after = count;
-//   if((count > before) && (count <= after)){
-//     found = op.insert+iter
-//   }
-// })
-// .join('');
-// console.log('total count = '+count);
-// console.log('before = '+before);
-// console.log('count = '+count);
-// console.log('after = '+after);
-// console.log('found = '+found);
-//------------ determine which element was clicked --------
+    //------------ determine which element was clicked --------
+    // let count = 0;
+    // let before, after, iter = 0;
+    // let found: any;
+    // clip
+    // .map((op: any) => {
+    //   iter++;
+    //   before = count;
+    //   count += op.insert.length;
+    //   after = count;
+    //   if((count > before) && (count <= after)){
+    //     found = op.insert+iter
+    //   }
+    // })
+    // .join('');
+    // console.log('total count = '+count);
+    // console.log('before = '+before);
+    // console.log('count = '+count);
+    // console.log('after = '+after);
+    // console.log('found = '+found);
+    //------------ determine which element was clicked --------
 
     //------------------ change the results ===============
     // let newText = new Delta();
@@ -176,16 +271,30 @@ export class WriteComponent {
     // this.editorInstance.updateContents(delta, 'user');
     //------------------ change the results ===============
 
-    
-
     // console.log('onKeyDown');
-    if(event.key=='Backspace'){
-      // console.log('Backspace');
+    // if(event.key=='Backspace'){
+    //   // console.log('Backspace');
 
-    }else if(event.key=='Delete'){
-      // console.log('Delete');
+    // }else if(event.key=='Delete'){
+    //   // console.log('Delete');
     
-    }
+    // }
+  }
+
+  //type4
+  public emptyOut(){
+
+    // if(event.key=='Delete'){
+      console.log('Delete');
+      const existing = this.editorInstance.selection.root.innerHTML;
+      const clipboardDelta = this.editorInstance.clipboard.convert(
+        `<p><p>`
+      );
+      const delta = new Delta().delete(existing.length).concat(clipboardDelta);
+      this.editorInstance.updateContents(delta, 'user');
+      const afterChanged = this.editorInstance.selection.root.innerHTML;
+      console.log('after changed = '+JSON.stringify(afterChanged));
+    // }
   }
 
   ngOnDestroy(): void{
