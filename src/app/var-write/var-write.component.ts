@@ -244,6 +244,33 @@ export class VarWriteComponent {
 
   public addBindingsOnKeyInsert(){
     this.editor.keyboard.addBinding({key: 'A', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'B', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'C', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'D', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'E', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'F', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'G', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'H', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'I', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'J', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'K', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'L', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'M', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'N', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'O', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'P', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'Q', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'R', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'S', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'T', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'U', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'V', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'W', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'X', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'Y', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: 'Z', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: '', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
+    this.editor.keyboard.addBinding({key: '', metaKey: null, ctrlKey: null, shiftKey: null, altKey: null, shortKey: null}, {format: ['code']}, this.preventInsert);
   
   }
 
