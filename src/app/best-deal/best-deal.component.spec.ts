@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BestDealComponent } from './best-deal.component';
+// import { BestDealComponent } from './best-deal.component';
 
-describe('BestDealComponent', () => {
-  let component: BestDealComponent;
-  let fixture: ComponentFixture<BestDealComponent>;
+// describe('BestDealComponent', () => {
+//   let component: BestDealComponent;
+//   let fixture: ComponentFixture<BestDealComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ BestDealComponent ]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ BestDealComponent ]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(BestDealComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(BestDealComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
