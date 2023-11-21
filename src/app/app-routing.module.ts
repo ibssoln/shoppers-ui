@@ -8,6 +8,7 @@ import { StoresComponent } from './stores/stores.component';
 import { FaqBoardComponent } from './faq-board/faq-board.component';
 import { ShopComponent } from './shop/shop.component';
 import { WriteComponent } from './write/write.component';
+import { VarWriteComponent } from './var-write/var-write.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/stores', pathMatch: 'full' },
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'faqBoard', component: FaqBoardComponent },
   { path: 'shop', component: ShopComponent },
-  { path: 'write', component: WriteComponent }
+  { path: 'write', component: WriteComponent },
+  { path: 'varwrite', component: VarWriteComponent }
+
 ];
 
 @NgModule({

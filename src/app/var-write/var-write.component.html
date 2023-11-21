@@ -23,7 +23,7 @@
 
                         <div quill-editor-toolbar>
                             <form [formGroup]="varForm">
-                                <select class="ql-size" formControlName="varData" [title]="'Insert Variable'" (change)="enterVariable($event)">
+                                <select class="ql-size" formControlName="varData" [title]="'Insert Variable'" (change)="enterVariable('varData')">
                                     <option value="" selected hidden disabled="true">Insert</option>
                                     <option value="CUSTOMER_SERVICE">CUSTOMER_SERVICE</option>
                                     <option value="PURCHASE_SHOP">PURCHASE_SHOP</option>
