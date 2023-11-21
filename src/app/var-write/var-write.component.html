@@ -12,22 +12,21 @@
 
                     <quill-editor style="width: 800px; height: 200px;"
                         [formControl]="control"
+                        [formControlName]="'containerControlName'"
                         [placeholder]="''"
                         [modules]="quillConfiguration"
                         class="content-editor"
-                            (onFocus)="focus($event)" 
-                            (onEditorChanged)="changedEditor($event)"
-                            (onBlur)="blur($event)" 
-                            (onEditorCreated)="created($event)"
-                            (keydown)="onKeyDown($event)"
+                        (onEditorChanged)="editorChanged($event)"
+                        (onEditorCreated)="editorCreated($event)"
+                        (keydown)="onKeydown($event)"
                         >
 
                         <div quill-editor-toolbar>
                             <form [formGroup]="varForm">
                                 <select class="ql-size" formControlName="varData" [title]="'Insert Variable'" (change)="enterVariable($event)">
                                     <option value="" selected hidden disabled="true">Insert</option>
-                                    <option value="[CUSTOMER_SERVICE]">[CUSTOMER_SERVICE]</option>
-                                    <option value="[PURCHASE_SHOP]">[PURCHASE_SHOP]</option>
+                                    <option value="CUSTOMER_SERVICE">CUSTOMER_SERVICE</option>
+                                    <option value="PURCHASE_SHOP">PURCHASE_SHOP</option>
                                 </select>
                             </form>
                             <button class="ql-bold"></button>
