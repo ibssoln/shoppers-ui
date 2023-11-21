@@ -29,6 +29,7 @@ export class VarWriteComponent {
   public postForm: FormGroup = this.formBuilder.group({});
   public varForm: FormGroup = this.formBuilder.group({});
   public control: FormControl = new FormControl();
+  public controlName: string = 'containerControl';
   public editor: any;
   public loader: boolean = false;
   public KEYWORDS = ['CUSTOMER_SERVICE','PURCHASE_SHOP'];
@@ -52,7 +53,7 @@ export class VarWriteComponent {
 
   ngOnInit() {
     this.control = this.control ?? new FormControl();
-    // this.postForm.addControl('varData', new FormControl(null, null));
+    this.postForm.addControl('containerControl', new FormControl(null, null));
     this.varForm.addControl('varData', new FormControl(null, null));
     this.varForm.controls['varData'].setValue('');
   }
@@ -70,7 +71,7 @@ export class VarWriteComponent {
 
   public editorCreated(editor: any){
     this.editor = editor;
-    this.varForm.controls['varData'].setValue('');
+    // this.varForm.controls['varData'].setValue('');
     this.addBindingsOnKeyInsert();
     this.addBindingsOnKeyDelete();
   }
