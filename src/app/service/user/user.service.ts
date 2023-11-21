@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { APP } from 'src/app/shared/constant/app.const';
 import { handleError } from 'src/app/shared/function/app.function';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { handleError } from 'src/app/shared/function/app.function';
 })
 export class UserService {
 
-  public httpOptions = {headers: new HttpHeaders('Content-Type': 'applicaiton/json')}
+  // public httpOptions = {headers: new HttpHeaders('Content-Type': 'applicaiton/json')}
   httpClient: any;
 
     // private sessionState = new BehaviorSubject<sessionState>(new sessionState());
@@ -36,7 +37,7 @@ export class UserService {
 
   public getUserRoleAndPolicies(userId: string): Observable<any>{
     const params = {'userId': userId};
-    return this.httpClient.post('/fortress', params, this.httpOptions).pipe(catchError(handleError));
+    return this.httpClient.post('/fortress', params, APP.HTTP_OPTIONS.JSON_SIMPLE).pipe(catchError(handleError));
   }
 
   // public updatesessionState(item: any): void{
