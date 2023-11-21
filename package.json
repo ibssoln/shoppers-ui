@@ -28,8 +28,6 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "@clr/angular": "^13.18.2",
-    "@clr/core": "^4.0.15",
-    "@clr/icons": "^13.0.2",
     "@clr/ui": "^13.18.2",
     "axios": "^0.21.4",
     "dotenv": "^16.3.1",

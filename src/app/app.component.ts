@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ControllerService } from './service/controller/controller.service';
-import { ClarityIcons, shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon, pinboardIcon } from '@cds/core/icon';
+// import { ClarityIcons, shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon, pinboardIcon } from '@cds/core/icon';
 import { Observable, Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-ClarityIcons.addIcons(shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon, pinboardIcon );
+// ClarityIcons.addIcons(shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon, pinboardIcon );
 
 @Component({
   selector: 'app-root',
