@@ -15,6 +15,7 @@ import { ShopComponent } from './shop/shop.component';
 import { WriteComponent } from './write/write.component';
 import { QuillModule } from 'ngx-quill';
 import { CommonModule } from '@angular/common';
+import { VarWriteComponent } from './var-write/var-write.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
     StoresComponent,
     FaqBoardComponent,
     ShopComponent,
-    WriteComponent
+    WriteComponent,
+    VarWriteComponent
   ],
   imports: [
     BrowserModule,
