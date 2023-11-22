@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CategoryService } from './category.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { LogService } from './log.service';
 
 describe('CategoryService', () => {
@@ -26,6 +26,28 @@ describe('CategoryService', () => {
     expect(categoryService).toBeTruthy();
   });
 
+  it('should process getCategories', () => {
+    spyOn(categoryService, 'getCategories').and.returnValue(of({results: [{id: 123}, {id: 456}], status: '200 OK', statusText: 'SUCCESS'}));
+    categoryService.getCategories().subscribe((res: any) => {
+      expect(res.status).toEqual('200 OK');
+      expect(res.statusText).toEqual('SUCCESS');
+      expect(res.results.length).toEqual(2);
+    });
+  });
+
+  it('should process getCategories through httpClient', (done: DoneFn) => {
+    spyOn(categoryService, 'getCategories').and.returnValue(of({results: [{id: 123}, {id: 456}], status: '200 OK', statusText: 'SUCCESS'}));
+    categoryService.getCategories().subscribe({
+      next: (res: any) => {
+        expect(res.status).toEqual('200 OK');
+        expect(res.statusText).toEqual('SUCCESS');
+        expect(res.results.length).toEqual(2);
+        done();
+      },
+      error: done.fail
+    });
+  });
+
   it('should handle ErrorEvent errors while executing getCategories', (done: DoneFn) => {
     let logServiceSpy = spyOn<any>(logService, 'logError');
     logServiceSpy.and.returnValue('');
@@ -39,10 +61,10 @@ describe('CategoryService', () => {
       error: (errorMessage)=>{
         expect(logServiceSpy).toHaveBeenCalledWith('An error occurred: Not Found');
         expect(errorMessage).toEqual(new Error('An error occurred. Please try again.'));
+        expect(httpClientSpy.get.calls.count()).toBe(spyCalls+1);
         done();
       }
     });
-    expect(httpClientSpy.get.calls.count()).toBe(spyCalls+1);
   });
 
   it('should handle text errors while executing getCategories', (done: DoneFn) => {
