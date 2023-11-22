@@ -31,8 +31,7 @@ export class LogService {
 
   public logError(message: string){
     console.error(message);
-    // return this.pushLog(LogLevel.ERROR, message);
-    return '';
+    return this.pushLog(LogLevel.ERROR, message);
   }
 
   private flushLogs = interval(10000).subscribe(() => {
