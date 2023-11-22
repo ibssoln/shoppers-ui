@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { Item, Store } from '../shared/model/common.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { ItemService } from '../service/item/item.service';
+import { ItemService } from '../service/item.service';
 import { Router } from '@angular/router';
 import { APP } from '../shared/constant/app.const';
-import { SessionDataService } from '../service/session/session-data.service';
+import { SessionDataService } from '../service/session-data.service';
 import { CartItemType, CartType, SessionData } from '../shared/model/SessionData.model';
 
 @Component({

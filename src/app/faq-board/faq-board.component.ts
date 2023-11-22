@@ -4,7 +4,7 @@ import { Subject, TimeoutError, debounceTime, takeUntil } from 'rxjs';
 import { FaqDatagrid, FaqFilter, FaqNotification, FaqNotificationMode, FaqSort, FaqSpinner, faq } from '../shared/datagrid/faq.datagrid.model';
 import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { DatagridRefreshMode, FetchResult } from '../shared/datagrid/repository.model';
-import { ControllerService } from '../service/controller/controller.service';
+import { ControllerService } from '../service/controller.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 

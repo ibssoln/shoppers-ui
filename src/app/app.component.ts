@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControllerService } from './service/controller/controller.service';
+import { ControllerService } from './service/controller.service';
 // import { ClarityIcons, shoppingCartIcon, searchIcon, cogIcon, happyFaceIcon, storeIcon, pinboardIcon } from '@cds/core/icon';
 import { Observable, Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';

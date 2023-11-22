@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CartItemType, CartType, SessionData } from '../shared/model/SessionData.model';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SessionDataService } from '../service/session/session-data.service';
+import { SessionDataService } from '../service/session-data.service';
 import { Item, Store } from '../shared/model/common.model';
 import { APP } from '../shared/constant/app.const';
 

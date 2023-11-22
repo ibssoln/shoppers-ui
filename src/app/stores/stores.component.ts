@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControllerService } from '../service/controller/controller.service';
+import { ControllerService } from '../service/controller.service';
 import { Subject, map, takeUntil } from 'rxjs';
-import { StoreService } from '../service/store/store.service';
+import { StoreService } from '../service/store.service';
 import { Category, Store } from '../shared/model/common.model';
 import { APP } from '../shared/constant/app.const';
-import { CategoryService } from '../service/category/category.service';
+import { CategoryService } from '../service/category.service';
 import { Router } from '@angular/router';
-import { SessionDataService } from '../service/session/session-data.service';
+import { SessionDataService } from '../service/session-data.service';
 
 @Component({
   selector: 'app-stores',
