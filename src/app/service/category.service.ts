@@ -31,7 +31,7 @@ export class CategoryService {
     }
   } 
 
-  private handleErrorWithError(err: HttpErrorResponse): any{
+  private handleGivenError(err: HttpErrorResponse): any{
       if(err.error instanceof ErrorEvent){
         this.logService.logError(`An error occurred: ${err.error.message}`);
       }else{

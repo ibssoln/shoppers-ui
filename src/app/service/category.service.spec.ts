@@ -93,7 +93,7 @@ describe('CategoryService', () => {
        status: 404, 
        statusText: 'Not Found' 
     });
-    categoryService['handleErrorWithError'](errorResp);
+    categoryService['handleGivenError'](errorResp);
     expect(logServiceSpy).toHaveBeenCalledWith('An error occurred: Not Found');
   });
 
@@ -104,11 +104,8 @@ describe('CategoryService', () => {
        status: 404, 
        statusText: 'Not Found' 
     });
-    categoryService['handleErrorWithError'](errorResp);
+    categoryService['handleGivenError'](errorResp);
     expect(logServiceSpy).toHaveBeenCalledWith('An error occurred: status 404, Test Error');
   });
-
-  
- 
 
 });

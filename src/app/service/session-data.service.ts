@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, skipWhile, take } from 'rxjs';
+import { BehaviorSubject, skipWhile, take, throwError } from 'rxjs';
 import { APP } from 'src/app/shared/constant/app.const';
 import { SessionData } from 'src/app/shared/model/SessionData.model';
+import { LogService } from './log.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,7 @@ export class SessionDataService {
 
   constructor(
     // private loggerService: LoggerService
+    private logService: LogService
   ) { }
 
   public updateSessionData(sessionData: SessionData): void{
@@ -143,5 +146,25 @@ export class SessionDataService {
   //     });
   //   }
   // }
+
+  private handleError(): any{
+    return (err: HttpErrorResponse)=> { 
+      if(err.error instanceof ErrorEvent){
+        this.logService.logError(`An error occurred: ${err.error.message}`);
+      }else{
+        this.logService.logError(`An error occurred: status ${err.status}, ${err.error}`);
+      }
+      return throwError(() => new Error('An error occurred. Please try again.'));
+    }
+  } 
+
+  private handleGivenError(err: HttpErrorResponse): any{
+      if(err.error instanceof ErrorEvent){
+        this.logService.logError(`An error occurred: ${err.error.message}`);
+      }else{
+        this.logService.logError(`An error occurred: status ${err.status}, ${err.error}`);
+      }
+      return throwError(() => new Error('An error occurred. Please try again.'));
+  } 
 
 }
