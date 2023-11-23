@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, interval, of, tap } from 'rxjs';
+import { Observable, catchError, interval, of, tap, throwError } from 'rxjs';
 import { Log, LogLevel } from 'src/app/shared/model/log.model';
 
 @Injectable({
@@ -34,26 +34,23 @@ export class LogService {
     return this.pushLog(LogLevel.ERROR, message);
   }
 
-  private flushLogs = interval(10000).subscribe(() => {
+  public flushLogs = interval(10000).subscribe(() => {
     if(this.logs.length>0){
-      this.callWinston(this.logs).subscribe(() => {});
+      this.logToServer(this.logs).subscribe(() => {});
     }
   });
 
-  private callWinston(logs: Log[]){
+  public logToServer(logs: Log[]): Observable<any>{
     const path = 'http://localhost:8080/log';
     const options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    return this.http.post(path, logs, options).pipe(tap(data => {
-      this.logs = [];
-      return data;
-    }), 
-    catchError(
-      (error: any): Observable<any> => {
-        console.log('An error occurred while logging.', error);
-        return of([]);
-      }
-    )
-   );
+    return this.http.post(path, logs, options)
+           .pipe(tap((data: any)=>{this.logs = []; return data;}))
+           .pipe(catchError(
+            (err: HttpErrorResponse)=> { 
+              console.log('An error occurred while logging.', err);
+              return throwError(() => new Error('An error occurred while logging to server.'));
+            }
+          ));
   }
 
 }
