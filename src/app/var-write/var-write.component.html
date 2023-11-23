@@ -1,0 +1,58 @@
+<h2>Post a Comment</h2>
+<br /><hr /><br />
+
+<div class="align-center">
+<form [formGroup]="postForm">
+    <div class="clr-row clr-col-12">
+
+            <div class="clr-col-1"></div>
+            <div class="card clr-col-10">
+                <h3 class="card-header">Share your thought with us!</h3>
+                <div class="card-block flex clr-col-12">
+
+                    <quill-editor style="width: 800px; height: 200px;"
+                        [formControl]="control"
+                        [formControlName]="controlName"
+                        [placeholder]="''"
+                        [modules]="quillConfiguration"
+                        class="content-editor"
+                        (onEditorChanged)="editorChanged($event)"
+                        (onEditorCreated)="editorCreated($event)"
+                        (keydown)="onKeydown($event)"
+                        >
+
+                        <div quill-editor-toolbar>
+                            <form [formGroup]="varForm">
+                                <select class="ql-size" formControlName="varData" [title]="'Insert Variable'" (change)="enterVariable('varData')">
+                                    <option value="" selected hidden disabled="true">Insert</option>
+                                    <option value="CUSTOMER_SERVICE">CUSTOMER_SERVICE</option>
+                                    <option value="PURCHASE_SHOP">PURCHASE_SHOP</option>
+                                </select>
+                            </form>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                            <button class="ql-strike"></button>
+                            <button class="ql-blockquote"></button>
+                            <button class="ql-code-block"></button>
+                            <button class="ql-list" value="ordered"></button>
+                            <button class="ql-list" value="bullet"></button>
+                            <select class="ql-header">
+                            </select>
+                            <select class="ql-color">
+                            </select>
+                            <select class="ql-background">
+                            </select>
+                            <button class="ql-link"></button>
+                            <button class="ql-clean"></button>
+                        </div>
+                    </quill-editor>
+                </div>
+                <div class="clr-col-12 align-center">
+                        <button class="btn btn-primary" (click)="postComment()">Post</button>
+                </div>
+            </div>
+            <div class="clr-col-1"></div>
+    </div>
+</form>
+</div>

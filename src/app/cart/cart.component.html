@@ -1,0 +1,84 @@
+<h2>{{ currentShop.name }} Cart</h2>
+<br /><hr />
+
+<div class="clr-row clr-col-12" *ngIf="!countShops">
+  <div class="clr-col-12">
+    <div class="card">
+      <h3 class="card-header">Cart is currently empty.</h3>
+    </div>
+  </div>
+</div>
+
+<div class="clr-row clr-col-12" *ngIf="singleShopView || (countShops==1)">
+  <div class="clr-col-12">
+
+    <div class="clr-col-12 flex" *ngIf="singleShopView">
+      <div class="clr-col-9"></div>
+      <div class="clr-col-3 btn-top-menu"><button class="btn btn-sm btn-primary" (click)="seeAllShopsCart()">See Carts of All Shops</button></div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-header">Shopped at {{ currentShop.name }}</h3>
+
+      <div class="card-block" *ngFor="let basket of currentItems">
+
+        <div class="clr-row clr-col-12 flex">
+          <div class="clr-col-3 align-center"><img [src]="basket.item.image" class="image-square" /></div>
+          <div class="clr-col-3">
+            <h4 class="card-title align-center">{{ basket.item.name }}</h4>
+          </div>
+          <div class="clr-col-3 align-right">
+            <div class="card-text">{{ basket.count }}</div>
+          </div>
+          <div class="clr-col-3 align-right"><div class="card-text">${{ basket.item.price }}</div></div>
+        </div>
+        <div class="clr-row clr-col-12 flex align-center">
+          <div class="clr-col-3"></div>
+          <div class="clr-col-3"><button class="btn btn-sm btn-primary">Add Instruction</button></div>
+          <div class="clr-col-3"><button class="btn btn-sm btn-primary">Delete</button></div>
+          <div class="clr-col-3"></div>
+        </div>
+       
+      </div>
+
+      <div class="card-block clr-col-12 flex">
+        <div class="clr-col-9"></div>
+        <div class="clr-col-3 cart-total"><b>${{ currentTotal() | number:'1.0-2' }}</b></div>
+      </div>
+
+      <div class="card-block clr-col-12 flex">
+        <div class="clr-col-9"></div>
+        <div class="clr-col-3 btn-checkout"><button class="btn btn-lg btn-primary">Checkout</button></div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="clr-row clr-col-12" *ngIf="!singleShopView && countShops>1">
+  <div class="clr-col-12">
+    <div class="card">
+      <h3 class="card-header">You have {{ countShops }} Store Carts. Select one to View.</h3>
+
+      <div class="clr-row clr-col-12">
+        <div class="clr-col-3" *ngFor="let basket of sessionData.carts">
+          <div class="card" (click)="showSingleViewCart(basket)">
+            <h3 class="card-header">{{ basket.store.name }}</h3>
+            <div class="card-block flex clr-col-12">
+                <div class="card-text"><img [src]="basket.store.image" class="image" /></div>
+                <div class="card-text card-right">
+                  <span class="card-title" *ngIf="basket.store.address">Located at {{ basket.store.address }}</span>
+                  <div *ngIf="basket.store.openUntil"><i>Open until {{ basket.store.openUntil | date: 'shortTime'}}</i></div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-block clr-col-12 flex">
+        <div class="clr-col-12"></div>
+      </div>
+     
+    </div>
+  </div>
+</div>

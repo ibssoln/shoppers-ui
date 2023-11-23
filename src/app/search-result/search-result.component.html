@@ -1,0 +1,197 @@
+<h2>Search Results</h2>
+<br /><hr /><br />
+
+<form [formGroup]="searchForm">
+
+    <div class="flex">
+          <input clrInput placeholder="Enter the keyword" id="keyword" name="keyword" [formControlName]="'keyword'" />
+          <div style="margin: 8px 0 0 5px;"><button class="btn btn-primary" (click)="search()">Search</button></div>
+    </div>
+    <div *ngIf="searchForm.controls['keyword'].getError('required') && (searchForm.get('keyword')?.dirty || searchForm.get('keyword')?.touched)" class="alert">
+      * This field is required
+    </div>
+      
+    <br />
+
+    <div class="clr-row clr-col-12">
+
+        <div class="clr-col-3">
+          <div class="card">
+            <h3 class="card-header">Header</h3>
+            <div class="card-block">
+              <h4 class="card-title">Block</h4>
+              <div class="card-text">...</div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-link">Footer Action 1</button>
+              <button class="btn btn-sm btn-link">Footer Action 2</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+      </div>
+    
+      <div class="clr-row">
+    
+        <div class="clr-col-3">
+          <div class="card">
+            <h3 class="card-header">Header</h3>
+            <div class="card-block">
+              <h4 class="card-title">Block</h4>
+              <div class="card-text">...</div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-link">Footer Action 1</button>
+              <button class="btn btn-sm btn-link">Footer Action 2</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+      </div>
+    
+      <div class="clr-row">
+    
+        <div class="clr-col-3">
+          <div class="card">
+            <h3 class="card-header">Header</h3>
+            <div class="card-block">
+              <h4 class="card-title">Block</h4>
+              <div class="card-text">...</div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-link">Footer Action 1</button>
+              <button class="btn btn-sm btn-link">Footer Action 2</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="clr-col-3">
+            <div class="card">
+              <h3 class="card-header">Header</h3>
+              <div class="card-block">
+                <h4 class="card-title">Block</h4>
+                <div class="card-text">...</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+              </div>
+            </div>
+          </div>
+    
+      </div>
+
+
+</form>

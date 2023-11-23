@@ -1,0 +1,35 @@
+.flex{
+	display: inline-flex;
+}
+
+.category-title{
+    padding-left: 15px;
+}
+
+.image-square{
+    width: 60px;
+    height: 60px;
+}
+
+.image{
+    width: 60px;
+}
+
+.category-box{
+    padding-bottom: 20px;
+}
+
+.card-right{
+    margin-left: 15px;
+}
+
+.strike-italic{
+   text-decoration:line-through;
+   font-style: italic; 
+}
+
+.event{
+    text-align: center; 
+    padding: 5px 0 5px 0;
+    background-color: rgb(244, 244, 159);
+}
