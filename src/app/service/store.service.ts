@@ -17,7 +17,8 @@ export class StoreService {
 
   public getStores(): Observable<any>{
     return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/store/stores`, APP.HTTP_OPTIONS.JSON_SIMPLE)
-          .pipe(map((result: any)=>{return result;}), catchError(handleError));
+          // .pipe(map((result: any)=>{return result;}), catchError(handleError));
+          .pipe(catchError(this.handleError()));
   }
 
   private handleError(): any{

@@ -40,7 +40,9 @@ export class UserService {
 
   public getUserRoleAndPolicies(userId: string): Observable<any>{
     const params = {'userId': userId};
-    return this.httpClient.post('/fortress', params, APP.HTTP_OPTIONS.JSON_SIMPLE).pipe(catchError(handleError));
+    return this.httpClient.post('/fortress', params, APP.HTTP_OPTIONS.JSON_SIMPLE)
+    // .pipe(catchError(handleError));
+    .pipe(catchError(this.handleError()));
   }
 
   // public updatesessionState(item: any): void{

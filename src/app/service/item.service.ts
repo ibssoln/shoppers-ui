@@ -17,17 +17,20 @@ export class ItemService {
 
   public getSpecialDealItems(): Observable<any>{
     return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/product/special/items`, APP.HTTP_OPTIONS.JSON_SIMPLE)
-          .pipe(map((result: any)=>{console.log('data = '+JSON.stringify(result));return result;}), catchError(handleError));
+          // .pipe(map((result: any)=>{console.log('data = '+JSON.stringify(result));return result;}), catchError(handleError));
+          .pipe(catchError(this.handleError()));
   }
 
   public getItems(): Observable<any>{
     return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/product/items`, APP.HTTP_OPTIONS.JSON_SIMPLE)
-          .pipe(map((result: any)=>{console.log('items = '+JSON.stringify(result));return result;}), catchError(handleError));
+          // .pipe(map((result: any)=>{console.log('items = '+JSON.stringify(result));return result;}), catchError(handleError));
+          .pipe(catchError(this.handleError()));
   }
 
   public getItemsByShop(shopId: string): Observable<any>{
     return this.httpClient.get<any>(APP.ENDPOINT.SERVER+`/product/items/${shopId}`, APP.HTTP_OPTIONS.JSON_SIMPLE)
-          .pipe(map((result: any)=>{console.log('items = '+JSON.stringify(result));return result;}), catchError(handleError));
+          // .pipe(map((result: any)=>{console.log('items = '+JSON.stringify(result));return result;}), catchError(handleError));
+          .pipe(catchError(this.handleError()));
   }
 
   private handleError(): any{
