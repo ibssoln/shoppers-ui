@@ -460,5 +460,27 @@ describe('ProductService', () => {
     });
     expect(httpClientSpy.post.calls.count()).toBe(spyCalls+1);
   });
+
+  it('should handle ErrorEvent-type error with handler', () => {
+    const logServiceSpy = spyOn(logService, 'logError');
+    const errorResp = new HttpErrorResponse({
+       error: new ErrorEvent('404', {message: 'Not Found'}),
+       status: 404, 
+       statusText: 'Not Found' 
+    });
+    productService['handleGivenError'](errorResp);
+    expect(logServiceSpy).toHaveBeenCalledWith('An error occurred: Not Found');
+  });
+
+  it('should handle text-type error with handler', () => {
+    const logServiceSpy = spyOn(logService, 'logError');
+    const errorResp = new HttpErrorResponse({
+       error: 'Test Error',
+       status: 404, 
+       statusText: 'Not Found' 
+    });
+    productService['handleGivenError'](errorResp);
+    expect(logServiceSpy).toHaveBeenCalledWith('An error occurred: status 404, Test Error');
+  });
   
 });
