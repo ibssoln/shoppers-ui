@@ -51,6 +51,7 @@ export class FaqBoardComponent implements OnInit, OnDestroy{
   ngOnInit(): void{
     this.refreshDatagrid();
 	this.faqForm.addControl('keyword', new FormControl('', [Validators.required]));
+	this.searchDisplayInitialPage();
   }
 
   public searchDisplayInitialPage(){
