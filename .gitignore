@@ -171,7 +171,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-build/*
-dist/*
 
 # Angular
