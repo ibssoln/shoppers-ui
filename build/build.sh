@@ -25,6 +25,6 @@ cp Dockerfile target
 
 ## download dependencies
 cd target
-node build/buildstamp.js $1
+node build/marking.js $1
 
 cd ..
