@@ -1,0 +1,128 @@
+appId: sp100
+appName: shoppers-ui
+productId: shoppers
+productLineId: line0001
+deploymentPlatform: aks
+language: Node
+
+cate1:
+  enabled: false
+  ingressMode: false
+  liveServiceName:
+  stageServiceName:
+
+config:
+  name: sp100-shoppers-ui-config-dev
+
+container:
+  replicaCount: 3
+  port: 8001
+  protocol: HTTPS
+  cpuLimit: 1g
+  cpuRequest: 500m
+  memoryLimit: 3Gi
+  memoryRequest: 3Gi
+  enableHttps: true
+
+securityContext:
+  allowedranges:
+  allowedRanges:
+    runAsUser: 1000
+    runAsGroup: 1000
+    supplementalGroups:
+      - 1000
+      - 1001
+  isRunAsNonRoot: true
+
+logIndex: pr-shoppers
+
+environment:
+  csp: azure
+  dd_apmtrace_env: dev-central
+  dd_http_client_tag_query_string: true
+  dd_http_server_tag_query_string: true
+  dd_trace_analytics_enabled: true
+  dd_trace_db_client_split_by_instance: true
+  dd_trace_agent_enabled: true
+  dd_jms_analytics_enabled: true
+  dd_jdbc_analytics_enabled: true
+  deploy_timestamp:
+  initial_mem: 256M
+  max_mem: 2.4G
+  name: dev-central
+  namespace: shoppers-aks-ns-dev
+
+hpa:
+  enabled: true
+  cpuTargetPercent: 300
+  maxReplicaCount: 4
+  minReplicaCount: 3
+
+image:
+  livenessProbe:
+    failureThreshold: 3
+    successThreshold: 1
+    httpPath: /probe-monitor
+    initialDelay: 60
+    period: 60
+    timeout: 30
+  pullPolicy: IfNotPresent
+  pullSecrets: dockercredentials
+  readinessProbe:
+    failureThreshold: 3
+    successThreshold: 1
+    httpPath: /probe-monitor
+    initialDelay: 30
+    period: 30
+    timeout: 30
+  registry: shoppers-app.com
+  repository: shoppers/shoppers-ui
+  tage: #IMAGE_VERSION#
+
+ingress:
+  enabled: true
+  path: /
+  load_balancer: shoppers-ui-dev.com
+  internal_load_balancer: shoppers-ui-dev.shoppers-dev-central.azure-dev.com
+  internal_load_balancer_stage: shoppers-ui-dev.shoppers-dev-central.azure-dev.com
+  tls_secret: sp100-shoppers-ui-secret
+  ssl_redirect: true
+  backend_protocol: HTTPS
+  proxy_read_timeout: 600
+  proxy_send_timeout: 600
+  proxy_connect_timeout: 600
+  proxy_body_size: 100M
+
+logIndex: pr-shoppers
+
+logging:
+  service: sp100-shoppers-ui
+  source: Node
+
+orgid: sp
+
+pdb:
+  enabled: true
+  minAvailable: 50%
+
+resources:
+
+deployment:
+  createdby: IBS
+
+splunkcloud:
+  enabled: true
+  splunkindex: pr-shoppers
+
+service:
+  port: 8001
+  type: ClusterIP
+  sessionAffinity: None
+
+rollingUpdate:
+  maxUnavailable: 50%
+  maxSurge: 100%
+
+vaultEnv: DEV
+vaultRole: pr_shoppers_sp100_dev_role
+terminationGracePeriod: 30
