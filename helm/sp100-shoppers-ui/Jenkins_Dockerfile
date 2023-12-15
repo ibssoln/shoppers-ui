@@ -1,0 +1,9 @@
+FROM shoppers-app.com/node:10
+
+RUN
+apt-get update && \
+    apt-get install tree
+
+RUN echo America/Toronto | tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
+
+CMD [ "node" ]
