@@ -38,14 +38,14 @@ logIndex: pr-shoppers
 
 environment:
   csp: azure
-  dd_apmtrace_env: dev-central
-  dd_http_client_tag_query_string: true
-  dd_http_server_tag_query_string: true
-  dd_trace_analytics_enabled: true
-  dd_trace_db_client_split_by_instance: true
-  dd_trace_agent_enabled: true
-  dd_jms_analytics_enabled: true
-  dd_jdbc_analytics_enabled: true
+  apmtrace_env: dev-central
+  http_client_tag_query_string: true
+  http_server_tag_query_string: true
+  trace_analytics_enabled: true
+  trace_db_client: true
+  trace_agent_enabled: true
+  jms_analytics_enabled: true
+  jdbc_analytics_enabled: true
   deploy_timestamp:
   initial_mem: 256M
   max_mem: 2.4G
